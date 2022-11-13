@@ -1,0 +1,8 @@
+Django
+mysqlclient
+django-environ
+requests
+numpy
+matplotlib
+environ
+pandas
