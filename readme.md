@@ -17,7 +17,7 @@ docker-compose up -d db
 うまくいったらブラウザのアドレスバーに`http://0.0.0.0:8000/`もしくは`http://localhost:8000/`を貼り付ける。
 
 # Gitの運用方法
-[gitflow](https://www.atlassian.com/ja/git/tutorials/comparing-workflows/gitflow-workflow)という運用方法で行う。
+[gitflow](https://qiita.com/katsunory/items/252c5fd2f70480af9bbb)という運用方法で行う。
 この方法では基本的に`master`ではなく`develop`ブランチへpush等を行う。
 ## cloneする
 リモートリポジトリの内容をローカルにコピーしよう。
@@ -29,6 +29,7 @@ git clone git@github.com:tomishima2904/shapley_association_game.git
 まずは、`develop`ブランチを作成して、移動する。
 ```
 git checkout -b develop/1
+# git checkout -b develop/バージョン名
 ```
 次にリモートにある`develop`ブランチをpullする。
 ```
@@ -37,13 +38,14 @@ git pull origin develop/1:develop/1
 ```
 次に個人作業するブランチを作成して移動する。`feature/`の後にブランチ名は自分が何をやっているのかわかるような名前にする。
 ```
-git checkout -b feature/frontend
+git checkout -b feature/1/frontend
+# git checkout -b feature/developから派生しているバージョン名/機能名
 ```
 
 ## タスクが終わったら
 リモートリポジトリにpushする。
 ```
-git push origin feature/frontend
+git push origin feature/1/frontend
 ```
 Githubのページに行ってプルリクエストを作成する。merge先は必ず`develop`ブランチで。そしたら富島等にレビューを頼む。
 
