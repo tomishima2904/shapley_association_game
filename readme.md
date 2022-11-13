@@ -17,6 +17,7 @@ docker-compose up -d db
 うまくいったらブラウザのアドレスバーに`http://0.0.0.0:8000/`もしくは`http://localhost:8000/`を貼り付ける。
 
 # Gitの運用方法
+[gitflow](https://www.atlassian.com/ja/git/tutorials/comparing-workflows/gitflow-workflow)という運用方法で行う。
 ## cloneする
 リモートリポジトリの内容をローカルにコピーしよう。
 ```
@@ -35,7 +36,7 @@ git pull origin develop/1:develop/1
 ```
 次に個人作業するブランチを作成して移動する。`feature/`の後にブランチ名は自分が何をやっているのかわかるような名前にする。
 ```
-git chekout -b feature/frontend
+git checkout -b feature/frontend
 ```
 
 ## タスクが終わったら
