@@ -18,6 +18,7 @@ docker-compose up -d db
 
 # Gitの運用方法
 [gitflow](https://www.atlassian.com/ja/git/tutorials/comparing-workflows/gitflow-workflow)という運用方法で行う。
+この方法では基本的に`master`ではなく`develop`ブランチへpush等を行う。
 ## cloneする
 リモートリポジトリの内容をローカルにコピーしよう。
 ```
@@ -25,9 +26,9 @@ git clone git@github.com:tomishima2904/shapley_association_game.git
 ```
 
 ## ブランチを移動・作成する
-基本的に`develop`ブランチに個人作業したものをpushする。まずは、`develop`ブランチを作成する。
+まずは、`develop`ブランチを作成して、移動する。
 ```
-git branch develop/1
+git checkout -b develop/1
 ```
 次にリモートにある`develop`ブランチをpullする。
 ```
@@ -44,7 +45,7 @@ git checkout -b feature/frontend
 ```
 git push origin feature/frontend
 ```
-Githubのページに行ってプルリクエストを作成する。そしたら富島等にレビューを頼む。
+Githubのページに行ってプルリクエストを作成する。merge先は必ず`develop`ブランチで。そしたら富島等にレビューを頼む。
 
 # 参考文献
-[[1] Django + MySQLで開発をするときにやること](https://qiita.com/tomi2904/items/cc2b33bd8c16c26e4460#%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B)
+[[1] Django + MySQLで開発をするときにやること](https://qiita.com/tomi2904/items/cc2b33bd8c16c26e4460)
