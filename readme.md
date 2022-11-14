@@ -28,24 +28,24 @@ git clone git@github.com:tomishima2904/shapley_association_game.git
 ## ブランチを移動・作成する
 まずは、`develop`ブランチを作成して、移動する。
 ```
-git checkout -b develop/1
 # git checkout -b develop/バージョン名
+git checkout -b develop/1
 ```
 次にリモートにある`develop`ブランチをpullする。
 ```
-git pull origin develop/1:develop/1
 # git pull origin リモートのブランチ名:ローカルのブランチ名
+git pull origin develop/1:develop/1
 ```
 次に個人作業するブランチを作成して移動する。`feature/`の後にブランチ名は自分が何をやっているのかわかるような名前にする。
 ```
-git checkout -b feature/1/frontend
 # git checkout -b feature/developから派生しているバージョン名/機能名
+git checkout -b feature/1/tpl_index
 ```
 
 ## タスクが終わったら
 リモートリポジトリにpushする。
 ```
-git push origin feature/1/frontend
+git push origin feature/1/tpl_index
 ```
 Githubのページに行ってプルリクエストを作成する。merge先は必ず`develop`ブランチで。そしたら富島等にレビューを頼む。
 
