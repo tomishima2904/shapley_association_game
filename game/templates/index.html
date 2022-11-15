@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>トップページ</title>
-</head>
+{% extends 'base.html' %}
+{% load static %}
 
-<body>
-    hello world
-<body
-</html>
+{% block title %}トップページ{% endblock %}
+
+{% block contents %}
+    <div class="text-3xl text-blue-600">DjangoでTailwindCSSを使用する方法</div>
+{% endblock %}
+
