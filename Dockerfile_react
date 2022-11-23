@@ -1,0 +1,3 @@
+FROM node:16-alpine
+RUN mkdir /front_code
+WORKDIR /front_code

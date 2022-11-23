@@ -24,3 +24,14 @@ services:
       - "8000:8000"
     depends_on:
       - db
+
+  front:
+    build:
+      context: .
+      dockerfile: Dockerfile_react
+    restart: always
+    volumes:
+      - ./node:/front_code:cached
+    command: sh -c "cd django_front && yarn start"
+    ports:
+      - "3000:3000"

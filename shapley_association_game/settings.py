@@ -55,6 +55,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+#アプリケーションのフロンドエンド(提供されるポート)がAPIと対話するために設定
+CORS_ORIGIN_WHITELIST = [
+     'http://localhost:3000'
+]
+
 ROOT_URLCONF = 'shapley_association_game.urls'
 
 TEMPLATES = [
