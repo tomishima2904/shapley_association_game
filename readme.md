@@ -19,11 +19,13 @@ docker-compose up -d db
 # React環境構築
 docker-composeで**Django+MySQL+React**の環境を構築する。
 コンテナを起動する前にReactアプリを作成する。（すでに作成したものをgitに置いてあるので、実効しなくても問題ないと思う）
-docker-compose run --rm front sh -c "npm install -g create-react-app && create-react-app django_front"
+'docker-compose run --rm front sh -c "npm install -g create-react-app && create-react-app django_front"'
 
 そして、起動させる
+'''
 docker-compose up -d front
 Creating django_react_front_1 ... done←こうなったら成功
+'''
 以下を実行すると、現在の立ち上がっているコンテナの内容がわかる
 docker-compose ps
 
