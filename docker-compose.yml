@@ -32,6 +32,6 @@ services:
     restart: always
     volumes:
       - ./node:/front_code:cached
-    command: sh -c "cd django_front && yarn start"
+    command: sh -c "cd django_front && npm start"
     ports:
       - "3000:3000"

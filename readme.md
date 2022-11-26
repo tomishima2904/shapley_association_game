@@ -2,37 +2,32 @@
 研究で利用するデータを収集するために連想ゲームを開発する
 
 # 環境構築
-docker-composeで**Django + MySQL**の環境を構築する。
+docker-composeで**Django + MySQL + React**の環境を構築する。
 まずは、buildする。`docker-compose.yml`等を変更しない限り1回やればで良い。
 ```
 docker-compose build
 ```
 そして、upする。うまくいかない場合は先にデータベース側のコンテナを立ち上げよう。
 ```
-docker-compose up
+docker-compose up -d
 
-# うまくいかない場合は先に以下のコマンドを実行する
+# うまくいかない場合は先に以下のコマンドを実行するといいかも
 docker-compose up -d db
 ```
-うまくいったらブラウザのアドレスバーに`http://0.0.0.0:8000/`もしくは`http://localhost:8000/`を貼り付ける。
-
-# React環境構築
-docker-composeで**Django+MySQL+React**の環境を構築する。
-コンテナを起動する前にReactアプリを作成する。（すでに作成したものをgitに置いてあるので、実行しなくても問題ないと思う）
+うまくいってるかどうかは`docker-compose ps`でコンテナの状態を見れる。
+パッケージの依存関係で`front`のコンテナに不具合が生じる場合は`docker-compose.yml`の`command`のところでいろいろ解消してみよう。
 ```
-docker-compose run --rm front sh -c "npm install -g create-react-app && create-react-app django_front"
-```
-そして、起動させる
-```
-docker-compose up -d front
-Creating django_react_front_1 ... done ←こうなったら成功
-```
-以下を実行すると、現在の立ち上がっているコンテナの内容がわかる
-```
-docker-compose ps
+% docker-compose ps
+NAME                               COMMAND                  SERVICE             STATUS              PORTS
+shapley_association_game-db-1      "docker-entrypoint.s…"   db                  running             3306/tcp, 33060/tcp
+shapley_association_game-front-1   "docker-entrypoint.s…"   front               running             0.0.0.0:3000->3000/tcp
+shapley_association_game-web-1     "python3 manage.py r…"   web                 running             0.0.0.0:8000->8000/tcp
 ```
 
-問題なく起動されたら`http://localhost:3000/`にアクセスし、Reactの画面が表示されれば成功。
+うまくいったらブラウザのアドレスバーに以下を貼り付けてアクセスする。
+- Django: `http://0.0.0.0:8000/`もしくは`http://localhost:8000/`
+- React: `http://0.0.0.0:3000/`もしくは`http://localhost:3000/`
+
 
 # Gitの運用方法
 [gitflow](https://qiita.com/katsunory/items/252c5fd2f70480af9bbb)という運用方法で行う。
