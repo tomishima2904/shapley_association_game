@@ -55,12 +55,12 @@ git pull origin develop/1:develop/1
 git checkout -b feature/1/tpl_index
 ```
 
-## タスクが終わったら
-リモートリポジトリにpushする。
+## こまめなコミットとプッシュを！
+こまめなコミットと、コミットしたら即プッシュを心がけることでお互いの進捗が把握しやすくなる！
 ```
 git push origin feature/1/tpl_index
 ```
-Githubのページに行ってプルリクエストを作成する。merge先は必ず`develop`ブランチで。そしたら富島等にレビューを頼む。
+**タスクが終わったら**、Githubのページに行ってプルリクエストを作成する。merge先は必ず`develop`ブランチで。そしたら富島等にレビューを頼む。
 
 # 参考文献
 [[1] Django + MySQLで開発をするときにやること](https://qiita.com/tomi2904/items/cc2b33bd8c16c26e4460)
