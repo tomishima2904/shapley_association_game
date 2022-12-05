@@ -44,6 +44,10 @@ INSTALLED_APPS = [
 
     'game.apps.GameConfig',
     'accounts.apps.AccountsConfig',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
 ]
 
 MIDDLEWARE = [
@@ -192,3 +196,32 @@ SESSION_SAVE_EVERY_REQUEST = True
 
 # 参照するユーザーモデルをaccountsアプリで作成したmodelにする
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# djnago-allauthで利用するdjango.contrib.sitesを使うためにサイト識別用IDを設定
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    'allauth.account.auth_backends.AuthenticationBackend',  # E-mailアドレス認証
+    'django.contrib.auth.backends.ModelBackend',  # ユーザー名認証
+)
+
+# メールアドレス認証にする場合
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUT_USERNAME_REQUIRED = False
+
+# サインアップにメールアドレス確認を挟むよう設定
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# ACCOUNT_EMAIL_REQUIRED = True
+
+# ログイン/ログアウト後の遷移先を設定
+LOGIN_REDIRECT_URL = 'game:title'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
+
+# ログアウトリンクのクリック一発でログアウトする設定
+ACCOUNT_LOGOUT_ON_GET = True
+
+# django-allauthで送信するメールの件名に自動付与される接頭辞をブランクにする設定
+ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
+
+# デフォルトのメール送信元を設定
+# DEFAULT_FROM_EMAIL = os.environ.get('FROM_EMAIL')
