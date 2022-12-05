@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'game.apps.GameConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
