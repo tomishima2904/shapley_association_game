@@ -189,3 +189,6 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 SESSION_SAVE_EVERY_REQUEST = True
+
+# 参照するユーザーモデルをaccountsアプリで作成したmodelにする
+AUTH_USER_MODEL = 'accounts.CustomUser'
