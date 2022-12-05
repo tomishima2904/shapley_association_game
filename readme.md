@@ -28,6 +28,43 @@ shapley_association_game-web-1     "python3 manage.py r…"   web               
 - Django: `http://0.0.0.0:8000/`もしくは`http://localhost:8000/`
 - React: `http://0.0.0.0:3000/`もしくは`http://localhost:3000/`
 
+## データベースの準備
+
+問題用のデータベースを作成するために`db`コンテナに`words_data.sql`を転送する。
+```
+docker cp data/words_data.sql $(docker-compose ps -q db):/tmp/words_data.sql
+```
+`db`コンテナにbashで入る。
+```
+docker-compose exec db bash
+```
+`words_data.sql`の情報をMySQLに流し込む。
+```
+mysql < /tmp/words_data.sql
+```
+ちゃんとテーブルが作成されているかどうか確認するには以下のようにしよう。
+```
+bash-4.4# mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 17
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use shapley;  # 使用するDBの指定
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select * from words;  # テーブルの内容を確認
+```
+
 
 # Gitの運用方法
 [gitflow](https://qiita.com/katsunory/items/252c5fd2f70480af9bbb)という運用方法で行う。
