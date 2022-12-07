@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +63,7 @@ MIDDLEWARE = [
 
 #アプリケーションのフロンドエンド(提供されるポート)がAPIと対話するために設定
 CORS_ORIGIN_WHITELIST = [
-     'http://localhost:3000'
+    'http://localhost:3000'
 ]
 
 ROOT_URLCONF = 'shapley_association_game.urls'
@@ -194,6 +195,9 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 SESSION_SAVE_EVERY_REQUEST = True
 
+# メール処理で使うバックエンドを定義
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # 参照するユーザーモデルをaccountsアプリで作成したmodelにする
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
@@ -206,15 +210,15 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # メールアドレス認証にする場合
-# ACCOUNT_AUTHENTICATION_METHOD = 'email'
-# ACCOUT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUT_USERNAME_REQUIRED = False
 
 # サインアップにメールアドレス確認を挟むよう設定
-# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-# ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_REQUIRED = True
 
 # ログイン/ログアウト後の遷移先を設定
-LOGIN_REDIRECT_URL = 'game:title'
+LOGIN_REDIRECT_URL = 'game:index'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 # ログアウトリンクのクリック一発でログアウトする設定
@@ -224,4 +228,4 @@ ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 
 # デフォルトのメール送信元を設定
-# DEFAULT_FROM_EMAIL = os.environ.get('FROM_EMAIL')
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
