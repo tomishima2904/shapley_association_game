@@ -2,21 +2,34 @@
 
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-	<meta charset="UTF-8">
-	<title>{% block title %}{% endblock %}</title>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}{% endblock %}</title>
 
-	<!--CSS-->
-	<link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" />
-	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Philosopher">
+    <!--CSS-->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Philosopher"
+    />
 
-	{% block head %}{% endblock %}
+    {% block head %}{% endblock %}
+  </head>
 
-</head>
+  <body>
+		<div class="text-3xl text-black-500">
+			{% if user.is_authenticated %}
+				<p>{{ user.get_username }}でログイン中</p>
+			{% else %}
+				<p>ログインしていません</p>
+			{% endif %}
+		</div>
 
-<body>
-	{% block contents %}{% endblock %}
-</body>
+    {% block contents %}{% endblock %}
 
+  </body>
 </html>

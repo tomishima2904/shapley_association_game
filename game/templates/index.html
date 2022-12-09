@@ -1,18 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-
-{% block title %}タイトル{% endblock %}
+{% block title %}タイトル{% endblock%}
 
 {% block contents %}
-    <div class="text-3xl text-black-500">
-        {% if user.is_authenticated %}
-            <p>{{ user.get_username }}でログイン中</p>
-        {% else %}
-            <p>ログインしていません</p>
-        {% endif %}
-    </div>
-    <div class="text-1xl text-blue-600">
-        DjangoでTailwindCSSを使用する方法
-    </div>
+<div class="text-1xl text-red-600">DjangoでTailwindCSSを使用する方法</div>
+<a href="{% url 'game:gaming' %}" class="text-blue-800 underline">ゲームスタート</a>
 {% endblock %}
-
