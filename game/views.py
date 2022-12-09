@@ -3,15 +3,19 @@ from django.views import generic
 
 
 class IndexView(generic.TemplateView):
+
     template_name = "index.html"
 
+    def get(self, request, *args, **kwargs):
 
-class SignupView(generic.FormView):
-    template_name = "signup.html"
+        # 1回目にタイトル画面を訪れた場合
+        if not 'visited' in request.session:
+            print("Hello!")
+            request.session['visited'] = True
 
-
-class TitleView(generic.TemplateView):
-    template_name = "title.html"
+        request.session['started'] = False  # ゲームがスタートしたらTrueにする
+        request.session['qid_list'] = [1, 2, 4]  # 解答しなければいけない質問(qid)のリスト
+        return super().get(request, **kwargs)
 
 
 class GamingView(generic.TemplateView):
