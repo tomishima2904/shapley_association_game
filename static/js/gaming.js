@@ -40,7 +40,7 @@ answer_form.addEventListener('submit', (e) => {
 			// フォームをクリア
 			answer.value = ''
 			//
-			document.getElementById('stimulus-1').innerHTML = response.stimuli.simulus_1
+			document.getElementById('stimulus-1').innerHTML = response.stimuli.stimulus_1
 		})
 	.catch((error) => {
 			console.log(error)
