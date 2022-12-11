@@ -40,7 +40,7 @@ class IndexView(generic.TemplateView):
             request.session['stimuli_order'] = copy.copy(STIMULI_ORDER)
             request.session['stimuli_header'] = copy.copy(STIMULI_HEADER)
 
-        str_stimuli_order = [str(order) for order in request.session['stimuli_order']]
+        str_stimuli_order = [str(order+1) for order in request.session['stimuli_order']]
         request.session['q_order'] = ''.join(str_stimuli_order)
 
         return super().get(request, **kwargs)
