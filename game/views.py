@@ -96,7 +96,7 @@ class GamingView(generic.TemplateView):
         # 質問がなくなった場合
         if len(request.session['qid_list']) == 0:
             print("ゲーム終了！")
-            return redirect('results')
+            return redirect('game:results')  # 結果画面に遷移
 
         # 質問がまだある場合
         else:
@@ -122,4 +122,11 @@ class GamingView(generic.TemplateView):
 
 
 class ResultsView(generic.TemplateView):
+
     template_name = "results.html"
+
+    def get(self, request, *args, **kwargs):
+
+        request.session['started'] = False
+
+        return super().get(request, **kwargs)
