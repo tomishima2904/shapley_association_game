@@ -5,5 +5,14 @@
 
 {% block contents %}
 <a href="{% url 'game:results' %}" class="text-blue-800 underline">結果画面へ</a>
-<div class="text-black-500">{{ stimuli.stimulus_1 }} </div>
+<div id="stimulus-1" class="text-black-500" >{{ stimuli.stimulus_1 }} </div>
+
+<form id="answer-form" name="answer-form" class="w-full max-w-sm" method="POST">
+	{% csrf_token %}
+	<!-- {{ form.answer }} Django独自のform -->
+	<input id="user-answer" type="text" name="user-answer"
+	class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+	<button id="submit-button" class="bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2" type="submit">解答</button>
+</form>
+
 {% endblock %}
