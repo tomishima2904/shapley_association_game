@@ -21,13 +21,25 @@
   </head>
 
   <body>
-		<div class="text-3xl text-black-500">
-			{% if user.is_authenticated %}
-				<p>{{ user.get_username }}でログイン中</p>
-			{% else %}
-				<p>ログインしていません</p>
-			{% endif %}
-		</div>
+    <header class="flex justify-between bg-blue-100">
+      <a href="{% url 'game:index' %}">ここに画像?</a>
+      <nav>
+        <ul class="flex uppercase ">
+          <li class="m-2.5">
+            <div class="text-black-500">
+              {% if user.is_authenticated %}
+                <p>{{ user.get_username }}でログイン中</p>
+              {% else %}
+                <p>ログインしていません</p>
+              {% endif %}
+            </div>
+          </li>
+          <li class="m-2.5">
+            <a href="{% url 'account_login' %}" class="bg-blue-400 font-semibold text-white text-center w-fit py-2 px-4 rounded hover:bg-blue-500">ログアウト</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
     {% block contents %}{% endblock %}
 
