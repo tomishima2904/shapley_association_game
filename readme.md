@@ -31,6 +31,8 @@ shapley_association_game-web-1     "python3 manage.py r…"   web               
 
 ## データベースの準備
 
+### MySQLのコンテナ側での作業
+
 `db`コンテナにbashで入る。
 ```
 docker-compose exec db bash
@@ -61,6 +63,19 @@ You can turn off this feature to get a quicker startup with -A
 Database changed
 mysql> select * from words;  # テーブルの内容を確認
 ```
+
+### Djangoのコンテナ側での作業
+
+`web`コンテナにbashで入る。
+```
+docker-compose exec web bash
+```
+Djangoの`models.py`をデータベースに反映させるため`migrate`する。
+```
+python manage.py migrate
+```
+
+これでデータベース関連の前準備は一応完了。superuserとかも作っておくと便利なので[discussions](https://github.com/tomishima2904/shapley_association_game/discussions/14)の内容を参考にsuperuserも作ってみよう。
 
 
 # Gitの運用方法
