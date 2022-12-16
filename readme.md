@@ -15,7 +15,8 @@ docker-compose up -d
 docker-compose up -d db
 ```
 うまくいってるかどうかは`docker-compose ps`でコンテナの状態を見れる。
-パッケージの依存関係で`front`のコンテナに不具合が生じる場合は`docker-compose.yml`の`command`のところでいろいろ解消してみよう。
+~~パッケージの依存関係で`front`のコンテナに不具合が生じる場合は`docker-compose.yml`の`command`のところでいろいろ解消してみよう。~~
+**Reactの環境は一旦中止中。**
 ```
 % docker-compose ps
 NAME                               COMMAND                  SERVICE             STATUS              PORTS
@@ -30,10 +31,6 @@ shapley_association_game-web-1     "python3 manage.py r…"   web               
 
 ## データベースの準備
 
-問題用のデータベースを作成するために`db`コンテナに`words_data.sql`を転送する。
-```
-docker cp data/words_data.sql $(docker-compose ps -q db):/tmp/words_data.sql
-```
 `db`コンテナにbashで入る。
 ```
 docker-compose exec db bash
