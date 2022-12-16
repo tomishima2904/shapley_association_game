@@ -14,6 +14,7 @@ services:
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
       - ./my.cnf:/etc/my.cnf
+      - ./data/words_data.sql:/tmp/words_data.sql
 
   web:
     build: .
@@ -25,13 +26,13 @@ services:
     depends_on:
       - db
 
-  front:
-    build:
-      context: .
-      dockerfile: Dockerfile_react
-    restart: always
-    volumes:
-      - ./node:/front_code:cached
-    command: sh -c "cd django_front && npm start"
-    ports:
-      - "3000:3000"
+  # front:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile_react
+  #   restart: always
+  #   volumes:
+  #     - ./node:/front_code:cached
+  #   command: sh -c "cd django_front && npm start"
+  #   ports:
+  #     - "3000:3000"
