@@ -3,7 +3,8 @@
 {% block title %}タイトル{% endblock%}
 
 {% block contents %}
-<div class="text-1xl text-red-600">DjangoでTailwindCSSを使用する方法</div>
-<a href="{% url 'account_login' %}" class="text-blue-800 underline">ログインはこちら</a> <br>
-<a href="{% url 'game:gaming' %}" class="text-blue-800 underline">ゲームスタート</a>
+<div class="flex items-center flex-col mt-5">
+  <a href="{% url 'account_login' %}" class="bg-green-400 font-semibold text-white text-center w-fit py-2 px-4 rounded hover:bg-green-500">ログイン</a><br>
+  <a href="{% url 'game:gaming' %}" class="bg-blue-400 font-semibold text-white text-center w-fit py-2 px-4 rounded hover:bg-blue-500">ゲームスタート</a>
+</div>
 {% endblock %}
