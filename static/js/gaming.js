@@ -39,8 +39,12 @@ answer_form.addEventListener('submit', (e) => {
 		.then((response) => {
 			// フォームをクリア
 			answer.value = ''
-			//
-			document.getElementById('stimulus-1').innerHTML = response.stimuli.stimulus_1
+            // 刺激語を更新
+			document.getElementById('label-stimulus-1').innerText = response.stimuli.stimulus_1
+            document.getElementById('label-stimulus-2').innerText = response.stimuli.stimulus_2
+            document.getElementById('label-stimulus-3').innerText = response.stimuli.stimulus_3
+            document.getElementById('label-stimulus-4').innerText = response.stimuli.stimulus_4
+            document.getElementById('label-stimulus-5').innerText = response.stimuli.stimulus_5
 		})
 	.catch((error) => {
 			console.log(error)
