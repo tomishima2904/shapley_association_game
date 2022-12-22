@@ -12,7 +12,7 @@
 		id="stimulus-1" type="checkbox" value="stimulus-1"
 		class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
 	>
-	<label for="stimulus-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ stimuli.stimulus_1 }}</label>
+	<label id="label-stimulus-1" for="stimulus-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ stimuli.stimulus_1 }}</label>
 </div>
 
 <div class="flex items-center mb-4">
@@ -20,7 +20,7 @@
 		id="stimulus-2" type="checkbox" value="stimulus-2"
 		class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
 	>
-	<label for="stimulus-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ stimuli.stimulus_2 }}</label>
+	<label id="label-stimulus-2" for="stimulus-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ stimuli.stimulus_2 }}</label>
 </div>
 
 <div class="flex items-center mb-4">
@@ -28,7 +28,7 @@
 		id="stimulus-3" type="checkbox" value="stimulus-3"
 		class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
 	>
-	<label for="stimulus-3" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ stimuli.stimulus_3 }}</label>
+	<label id="label-stimulus-3" for="stimulus-3" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ stimuli.stimulus_3 }}</label>
 </div>
 
 <div class="flex items-center mb-4">
@@ -36,7 +36,7 @@
 		id="stimulus-4" type="checkbox" value="stimulus-4"
 		class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
 	>
-	<label for="stimulus-4" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ stimuli.stimulus_4 }}</label>
+	<label id="label-stimulus-4" for="stimulus-4" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ stimuli.stimulus_4 }}</label>
 </div>
 
 <div class="flex items-center mb-4">
@@ -44,7 +44,7 @@
 		id="stimulus-5" type="checkbox" value="stimulus-5"
 		class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
 	>
-	<label for="stimulus-5" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ stimuli.stimulus_5 }}</label>
+	<label id="label-stimulus-5" for="stimulus-5" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ stimuli.stimulus_5 }}</label>
 </div>
 
 <form id="answer-form" name="answer-form" class="w-full max-w-sm" method="POST">
@@ -56,7 +56,7 @@
 </form>
 
 <!--ゲーム中の処理を行うjsを読み込む-->
-<script type="text/javascript" src="{% static 'js/gaming.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/fetch.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/checkbox_queue.js' %}"></script>
 
 
