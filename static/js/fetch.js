@@ -19,7 +19,9 @@ answer_form.addEventListener('submit', (e) => {
 	const answer = document.getElementById('user-answer')
 	// URLのクエリパラメータを管理
 	const body = new URLSearchParams()
-	body.append('user-answer', answer.value)
+	body.append('user-answer', answer.value)  // ユーザーの解答
+    var u_order = "53142"  // こんな感じで刺激語の順序を文字列にしてdjango側に渡す
+    body.append('u-order', u_order)  // ユーザーが選択した刺激語の順序
 
 	// fetch API の登場! リロードしなくても画面の一部を更新できるようになる
 	fetch('', {

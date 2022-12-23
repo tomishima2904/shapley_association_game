@@ -87,16 +87,24 @@ class GamingView(generic.TemplateView):
     def post(self, request, *args, **kwargs):
 
         context = {}
+        results = UserAnswers.objects.filter(user=request.user).last()  # テーブルの最後のクエリを抽出
+
+        # fetchで送信されるユーザーの解答をモデルに保存
         user_answer = request.POST.get('user-answer')  # 解答フォームから解答を受け取る
         print(f"'{user_answer}'と解答されました")
-        results = UserAnswers.objects.filter(user=request.user).last()  # テーブルの最後のクエリを抽出
         results.user_answer = user_answer  # ユーザーの解答を記録
+
+        # fetchで送信されるユーザーが選択した刺激語の順序をモデルに保存
+        u_order = request.POST.get('u-order')  # ユーザーが選択した刺激語の順序を受け取る
+        print(f"ユーザーが選択した順序は {u_order} です")
+        results.u_order = u_order
+
         results.save()  # 結果を保存
 
         # 質問がなくなった場合
         if len(request.session['qid_list']) == 0:
             print("ゲーム終了！")
-            return redirect('game:results')  # 結果画面に遷移
+            return redirect('/results/')
 
         # 質問がまだある場合
         else:
@@ -130,3 +138,10 @@ class ResultsView(generic.TemplateView):
         request.session['started'] = False
 
         return super().get(request, **kwargs)
+
+
+    # def post(self, request, *args, **kwargs):
+
+    #     request.session['started'] = False
+
+    #     return super().get(request, **kwargs)
