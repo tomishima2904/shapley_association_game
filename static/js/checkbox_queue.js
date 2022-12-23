@@ -1,4 +1,4 @@
-let queue = [];
+var queue = [];
 const stim_dict = {
     'stimulus-1': '1',
     'stimulus-2': '2',
@@ -20,10 +20,16 @@ function handleCheckboxChange(event) {
 
     // 変化があった checkbox を取得
     var changed_checkbox = this;
-    var changed_checkbox_id = changed_checkbox.id;
-    console.log(stim_dict[changed_checkbox_id]);
+    var changed_checkbox_id = stim_dict[changed_checkbox.id];
 
-    // console.log(queue)
-    // 以下、必要な処理を記述する
+    // チェックが外された場合、リストから刺激語のidを削除
+    if (queue.includes(changed_checkbox_id) === true){
+        var index = queue.indexOf(changed_checkbox_id)
+        queue.splice(index, 1)
+    }
+    // チェックがされた場合、リストに刺激語のidを追加
+    else{
+        queue.push(changed_checkbox_id)
+    }
+    console.log(queue);
 }
-
