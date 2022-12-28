@@ -1,4 +1,3 @@
-var queue = [];
 const stim_dict = {
     'stimulus-1': '1',
     'stimulus-2': '2',
@@ -33,5 +32,3 @@ function handleCheckboxChange(event) {
     }
     console.log(queue);
 };
-
-export {queue};  // queue 変数を fetch.js で使えるようにする
