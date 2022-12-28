@@ -32,6 +32,7 @@ answer_form.addEventListener("submit", (e) => {
     body.append("user-answer", answer.value); // ユーザーの解答
     const u_order = queue.join(""); // こんな感じで刺激語の順序を文字列にしてdjango側に渡す
     body.append("u-order", u_order); // ユーザーが選択した刺激語の順序
+		body.append("left-questions", left_questions);
 
     // fetch API の登場! リロードしなくても画面の一部を更新できるようになる
     fetch("", {
@@ -54,8 +55,10 @@ answer_form.addEventListener("submit", (e) => {
         // 刺激語を更新 & チェクボックスをクリアな状態に
 				for (let i=0; i<NUM_STIM; i++){
 					checkbox_labels[i].innerText = response.stimuli[i];
-					checkboxes[i].checked = false;
+					// checkboxes[i].checked = false;  バグるためコメントアウトしておく
 				}
+				// ユーザーが答えなければいけない質問数を更新する
+				left_questions = response.left_questions;
 				// ユーザーが選択した刺激語の順序を記憶する配列もクリアに
 				queue = [];
       })
