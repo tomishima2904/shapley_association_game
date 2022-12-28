@@ -27,11 +27,9 @@ class IndexView(generic.TemplateView):
     def get(self, request, *args, **kwargs):
 
         # ログインしてから初めてタイトル画面を訪れた場合
-        if not 'visited' in request.session:
+        if not 'status' in request.session:
             print("Hello!")
-            request.session['visited'] = True
-
-        request.session['started'] = False  # ゲームがスタートしたらTrueにする
+            request.session['status'] = 1  # ログイン画面に訪れたことが一度でもあれば status に 2^0(1) を加算
 
         # ランダムに刺激語を提示する場合
         if RAMDOM_ORDER:
@@ -63,11 +61,11 @@ class GamingView(generic.TemplateView):
         context['left_questions'] = left_questions
 
         # 1問目
-        if request.session['started'] == False:
+        if request.session['status'] == 1:
 
             print("Game Start!")
             start_datetime = localtime(timezone.now())  # 開始の日付時刻を記憶
-            request.session['started'] = True  # ゲーム中ならTrue
+            request.session['status'] = 3  # ゲーム中なら status に 2^1(2) を加算
             request.session['session_id'] = start_datetime.strftime("%Y%m%d%H%M%S")  # 同ユーザーの異なるゲーム(セッション)を識別
             qid = QUESTIONS_NUM - left_questions + 1  # ユーザーが答える質問のID
 
@@ -153,7 +151,7 @@ class ResultsView(generic.TemplateView):
 
     def get(self, request, *args, **kwargs):
 
-        request.session['started'] = False
+        request.session['status'] = 1  # ゲーム中ではないので 2^1(2) を減算
 
         return super().get(request, **kwargs)
 
