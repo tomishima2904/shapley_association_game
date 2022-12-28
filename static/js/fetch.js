@@ -1,5 +1,3 @@
-import { queue } from "./checkbox_queue.js";
-
 // FetchAPI を使用するときは、CSRF に関する処理が必要になります。
 const getCookie = (name) => {
   if (document.cookie && document.cookie !== "") {
@@ -55,7 +53,7 @@ answer_form.addEventListener("submit", (e) => {
         // 刺激語を更新 & チェクボックスをクリアな状態に
 				for (let i=0; i<NUM_STIM; i++){
 					checkbox_labels[i].innerText = response.stimuli[i];
-					// checkboxes[i].checked = false;  バグるためコメントアウトしておく
+					checkboxes[i].checked = false;
 				}
 				// ユーザーが答えなければいけない質問数を更新する
 				left_questions = response.left_questions;
