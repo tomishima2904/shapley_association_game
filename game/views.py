@@ -8,12 +8,15 @@ from .models import Words, UserAnswers
 
 import random
 import copy
+import json
 
 
 STIMULI_NUM = 5  # 刺激語の数
 STIMULI_HEADER = [f"stimulus_{i+1}" for i in range(STIMULI_NUM)]
 STIMULI_ORDER = [i for i in range(STIMULI_NUM)]
 RAMDOM_ORDER = False  # False ならばDBに載っている刺激語の順に提示
+with open ("data/input_sentences.json", encoding='utf-8') as f:
+    Q_SENTENCES = json.load(f)
 
 class IndexView(generic.TemplateView):
 
@@ -77,6 +80,8 @@ class GamingView(generic.TemplateView):
         context['stimuli'] = {
             header: list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in request.session['stimuli_header']
         }  # qidに該当する刺激後を抽出する
+        q_sentence = Q_SENTENCES[Words.objects.filter(qid=qid).values('category')[0]['category']]
+        context['q_sentence'] = q_sentence[-1]  # ユーザーに提示する質問文
         print(context)
         context['status_message'] = "スタート!"
 
@@ -124,6 +129,8 @@ class GamingView(generic.TemplateView):
             context['stimuli'] = {
                 header: list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in request.session['stimuli_header']
             }  # qidに該当する刺激後を抽出する
+            q_sentence = Q_SENTENCES[Words.objects.filter(qid=qid).values('category')[0]['category']]
+            context['q_sentence'] = q_sentence[-1]  # ユーザーに提示する質問文
             print(context)
 
         return JsonResponse(context)

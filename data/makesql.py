@@ -15,7 +15,7 @@ with open(filename, encoding='utf-8-sig', newline='') as rf:
         print("", file=wf)
         for i, row in enumerate(csvreader):  # csvを1行ずつ読み込む
             if not i == total_row - 1 :
-                print(f"{tuple(row[:-1])},", file=wf)
+                print(f"{tuple(row)},", file=wf)
             else:
-                print(f"{tuple(row[:-1])};", file=wf)
+                print(f"{tuple(row)};", file=wf)
 print("Successfully Output")

@@ -13,7 +13,7 @@ from accounts.models import CustomUser
 class Words(models.Model):
     qid = models.AutoField(primary_key=True, help_text="質問のID")
     answer = models.CharField(max_length=20, blank=True, null=True)
-    category = models.CharField(max_length=20, blank=True, null=True)
+    category = models.CharField(max_length=3, blank=True, null=True)
     stimulus_1 = models.CharField(max_length=20, blank=True, null=True)
     stimulus_2 = models.CharField(max_length=20, blank=True, null=True)
     stimulus_3 = models.CharField(max_length=20, blank=True, null=True)
