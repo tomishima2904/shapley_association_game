@@ -21,8 +21,12 @@ answer_form.addEventListener("submit", (e) => {
 
   // 全ての刺激語がチェックされている場合は、フォームを送信する
   if (queue.length >= NUM_STIM) {
+
     const url = '{% url "gaming" %}';
     const answer = document.getElementById("user-answer");
+		const checkBoxes = document.getElementsByName('stimulus');
+		const checkBoxLabels = document.getElementsByName('label-stimulus');
+
     // URLのクエリパラメータを管理
     const body = new URLSearchParams();
     body.append("user-answer", answer.value); // ユーザーの解答
@@ -47,17 +51,13 @@ answer_form.addEventListener("submit", (e) => {
       .then((response) => {
         // フォームをクリア
         answer.value = "";
-        // 刺激語を更新
-        document.getElementById("label-stimulus-1").innerText =
-          response.stimuli.stimulus_1;
-        document.getElementById("label-stimulus-2").innerText =
-          response.stimuli.stimulus_2;
-        document.getElementById("label-stimulus-3").innerText =
-          response.stimuli.stimulus_3;
-        document.getElementById("label-stimulus-4").innerText =
-          response.stimuli.stimulus_4;
-        document.getElementById("label-stimulus-5").innerText =
-          response.stimuli.stimulus_5;
+        // 刺激語を更新 & チェクボックスをクリアな状態に
+				for (var i=0; i<NUM_STIM; i++){
+					checkBoxLabels[i].innerText = response.stimuli[i];
+					checkBoxes[i].checked = false;
+				}
+				// ユーザーが選択した刺激語の順序を記憶する配列もクリアに
+				queue = [];
       })
       .catch((error) => {
         console.log(error);
