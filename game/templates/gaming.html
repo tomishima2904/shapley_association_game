@@ -9,42 +9,57 @@
 <!-- 5つの刺激語をcheckbox形式で羅列している -->
 <div class="flex items-center mb-4">
 	<input
-		id="stimulus-1" type="checkbox" value="stimulus-1"
+		id="stimulus-1" type="checkbox" value="stimulus-1" name="stimulus"
 		class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
 	>
-	<label id="label-stimulus-1" for="stimulus-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ stimuli.stimulus_1 }}</label>
+	<label id="label-stimulus-1" for="stimulus-1" name="label-stimulus"
+	class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+		{{ stimuli.0 }}
+	</label>
 </div>
 
 <div class="flex items-center mb-4">
 	<input
-		id="stimulus-2" type="checkbox" value="stimulus-2"
+		id="stimulus-2" type="checkbox" value="stimulus-2" name="stimulus"
 		class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
 	>
-	<label id="label-stimulus-2" for="stimulus-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ stimuli.stimulus_2 }}</label>
+	<label id="label-stimulus-2" for="stimulus-2" name="label-stimulus"
+	class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+		{{ stimuli.1 }}
+	</label>
 </div>
 
 <div class="flex items-center mb-4">
 	<input
-		id="stimulus-3" type="checkbox" value="stimulus-3"
+		id="stimulus-3" type="checkbox" value="stimulus-3" name="stimulus"
 		class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
 	>
-	<label id="label-stimulus-3" for="stimulus-3" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ stimuli.stimulus_3 }}</label>
+	<label id="label-stimulus-3" for="stimulus-3" name="label-stimulus"
+	class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+		{{ stimuli.2 }}
+	</label>
 </div>
 
 <div class="flex items-center mb-4">
 	<input
-		id="stimulus-4" type="checkbox" value="stimulus-4"
+		id="stimulus-4" type="checkbox" value="stimulus-4" name="stimulus"
 		class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
 	>
-	<label id="label-stimulus-4" for="stimulus-4" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ stimuli.stimulus_4 }}</label>
+	<label id="label-stimulus-4" for="stimulus-4" name="label-stimulus"
+	class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+		{{ stimuli.3 }}
+	</label>
 </div>
 
 <div class="flex items-center mb-4">
 	<input
-		id="stimulus-5" type="checkbox" value="stimulus-5"
+		id="stimulus-5" type="checkbox" value="stimulus-5" name="stimulus"
 		class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
 	>
-	<label id="label-stimulus-5" for="stimulus-5" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ stimuli.stimulus_5 }}</label>
+	<label id="label-stimulus-5" for="stimulus-5" name="label-stimulus"
+	class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+		{{ stimuli.4 }}
+	</label>
 </div>
 
 {{ q_sentence }}
@@ -52,7 +67,7 @@
 <form id="answer-form" name="answer-form" class="w-full max-w-sm" method="POST">
 	{% csrf_token %}
 	<!-- {{ form.answer }} Django独自のform -->
-	<input id="user-answer" type="text" name="user-answer"
+	<input id="user-answer" type="text" name="user-answer" required="required"
 	class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 	<button id="submit-button" class="bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2" type="submit">解答</button>
 </form>
