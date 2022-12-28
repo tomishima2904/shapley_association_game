@@ -7,7 +7,8 @@
 <a href="{% url 'game:results' %}" class="text-blue-800 underline">結果画面へ</a>
 
 <script>
-	var left_questions = {{left_questions | safe }};
+	var left_questions = {{left_questions | safe }};  // 残りの質問数
+	var queue = [];  // ユーザーが選択した刺激語の順序を格納
 </script>
 
 <!-- 5つの刺激語をcheckbox形式で羅列している -->
