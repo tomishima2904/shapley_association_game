@@ -5,7 +5,7 @@ const stim_dict = {
     'stimulus-3': '3',
     'stimulus-4': '4',
     'stimulus-5': '5',
-}
+};
 
 // inputタグのうち type が checkbox のもの全てを対象
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
@@ -32,4 +32,6 @@ function handleCheckboxChange(event) {
         queue.push(changed_checkbox_id)
     }
     console.log(queue);
-}
+};
+
+export {queue};  // queue 変数を fetch.js で使えるようにする
