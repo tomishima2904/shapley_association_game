@@ -1,3 +1,5 @@
+import { queue } from './checkbox_queue.js';
+
 // FetchAPI を使用するときは、CSRF に関する処理が必要になります。
 const getCookie = (name) => {
 	if (document.cookie && document.cookie !== '') {
@@ -8,11 +10,11 @@ const getCookie = (name) => {
 			}
 		}
 	}
-}
-const csrftoken = getCookie('csrftoken')
+};
+const csrftoken = getCookie('csrftoken');
 
 // 解答する
-const answer_form = document.getElementById('answer-form')
+const answer_form = document.getElementById('answer-form');
 answer_form.addEventListener('submit', (e) => {
 	e.preventDefault()
 	const url = '{% url "gaming" %}'
@@ -20,7 +22,7 @@ answer_form.addEventListener('submit', (e) => {
 	// URLのクエリパラメータを管理
 	const body = new URLSearchParams()
 	body.append('user-answer', answer.value)  // ユーザーの解答
-    var u_order = "53142"  // こんな感じで刺激語の順序を文字列にしてdjango側に渡す
+    var u_order = queue.join('')  // こんな感じで刺激語の順序を文字列にしてdjango側に渡す
     body.append('u-order', u_order)  // ユーザーが選択した刺激語の順序
 
 	// fetch API の登場! リロードしなくても画面の一部を更新できるようになる
@@ -51,4 +53,4 @@ answer_form.addEventListener('submit', (e) => {
 	.catch((error) => {
 			console.log(error)
 	})
-})
+});
