@@ -9,6 +9,7 @@ from .models import Words, UserAnswers
 import random
 import copy
 import json
+from typing import List, Tuple, Dict, Any, Union
 
 
 STIMULI_NUM = 5  # 刺激語の数
@@ -77,9 +78,12 @@ class GamingView(generic.TemplateView):
                 q_order = request.session['q_order']
             )
 
-        context['stimuli'] = {
-            header: list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in request.session['stimuli_header']
-        }  # qidに該当する刺激後を抽出する
+        # context['stimuli']: Dict = {
+        #     header: list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in request.session['stimuli_header']
+        # }  # qidに該当する刺激後を抽出する
+        context['stimuli']: List = [
+            list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in request.session['stimuli_header']
+        ]
         q_sentence = Q_SENTENCES[Words.objects.filter(qid=qid).values('category')[0]['category']]
         context['q_sentence'] = q_sentence[-1]  # ユーザーに提示する質問文
         print(context)
@@ -126,9 +130,12 @@ class GamingView(generic.TemplateView):
                 q_order = request.session['q_order']
             )
 
-            context['stimuli'] = {
-                header: list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in request.session['stimuli_header']
-            }  # qidに該当する刺激後を抽出する
+            # context['stimuli']: Dict = {
+            #     header: list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in request.session['stimuli_header']
+            # }  # qidに該当する刺激後を抽出する
+            context['stimuli']: List = [
+                list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in request.session['stimuli_header']
+            ]
             q_sentence = Q_SENTENCES[Words.objects.filter(qid=qid).values('category')[0]['category']]
             context['q_sentence'] = q_sentence[-1]  # ユーザーに提示する質問文
             print(context)
