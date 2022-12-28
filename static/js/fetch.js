@@ -24,13 +24,13 @@ answer_form.addEventListener("submit", (e) => {
 
     const url = '{% url "gaming" %}';
     const answer = document.getElementById("user-answer");
-		const checkBoxes = document.getElementsByName('stimulus');
-		const checkBoxLabels = document.getElementsByName('label-stimulus');
+		const checkboxes = document.getElementsByName('stimulus');
+		const checkbox_labels = document.getElementsByName('label-stimulus');
 
     // URLのクエリパラメータを管理
     const body = new URLSearchParams();
     body.append("user-answer", answer.value); // ユーザーの解答
-    var u_order = queue.join(""); // こんな感じで刺激語の順序を文字列にしてdjango側に渡す
+    const u_order = queue.join(""); // こんな感じで刺激語の順序を文字列にしてdjango側に渡す
     body.append("u-order", u_order); // ユーザーが選択した刺激語の順序
 
     // fetch API の登場! リロードしなくても画面の一部を更新できるようになる
@@ -52,9 +52,9 @@ answer_form.addEventListener("submit", (e) => {
         // フォームをクリア
         answer.value = "";
         // 刺激語を更新 & チェクボックスをクリアな状態に
-				for (var i=0; i<NUM_STIM; i++){
-					checkBoxLabels[i].innerText = response.stimuli[i];
-					checkBoxes[i].checked = false;
+				for (let i=0; i<NUM_STIM; i++){
+					checkbox_labels[i].innerText = response.stimuli[i];
+					checkboxes[i].checked = false;
 				}
 				// ユーザーが選択した刺激語の順序を記憶する配列もクリアに
 				queue = [];
