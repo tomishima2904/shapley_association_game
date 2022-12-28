@@ -4,13 +4,13 @@ GRANT ALL ON shapley.* to shapley;
 DROP TABLE IF EXISTS words;
 CREATE TABLE words(
     qid INT NOT NULL AUTO_INCREMENT,
-    answer varchar(20),
-    category varchar(20),
-    `stimulus_1` varchar(20),
-    `stimulus_2` varchar(20),
-    `stimulus_3` varchar(20),
-    `stimulus_4` varchar(20),
-    `stimulus_5` varchar(20),
+    answer VARCHAR(20),
+    category VARCHAR(3),
+    `stimulus_1` VARCHAR(20),
+    `stimulus_2` VARCHAR(20),
+    `stimulus_3` VARCHAR(20),
+    `stimulus_4` VARCHAR(20),
+    `stimulus_5` VARCHAR(20),
     PRIMARY KEY (qid)
 );
-INSERT INTO words (answer, `stimulus_1`, `stimulus_2`, `stimulus_3`, `stimulus_4`, `stimulus_5`) VALUES
+INSERT INTO words (answer, `stimulus_1`, `stimulus_2`, `stimulus_3`, `stimulus_4`, `stimulus_5`, category) VALUES
