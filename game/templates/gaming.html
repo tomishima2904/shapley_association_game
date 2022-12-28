@@ -47,6 +47,8 @@
 	<label id="label-stimulus-5" for="stimulus-5" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ stimuli.stimulus_5 }}</label>
 </div>
 
+{{ q_sentence }}
+
 <form id="answer-form" name="answer-form" class="w-full max-w-sm" method="POST">
 	{% csrf_token %}
 	<!-- {{ form.answer }} Django独自のform -->
