@@ -13,6 +13,7 @@ from typing import List, Tuple, Dict, Any, Union
 
 
 STIMULI_NUM = 5  # 刺激語の数
+QUESTIONS_NUM = 3  # 本当は87だがテスト用に
 STIMULI_HEADER = [f"stimulus_{i+1}" for i in range(STIMULI_NUM)]
 STIMULI_ORDER = [i for i in range(STIMULI_NUM)]
 RAMDOM_ORDER = False  # False ならばDBに載っている刺激語の順に提示
@@ -31,7 +32,6 @@ class IndexView(generic.TemplateView):
             request.session['visited'] = True
 
         request.session['started'] = False  # ゲームがスタートしたらTrueにする
-        request.session['qid_list'] = [1, 2, 4]  # 解答しなければいけない質問(qid)のリスト(仮)
 
         # ランダムに刺激語を提示する場合
         if RAMDOM_ORDER:
@@ -59,6 +59,8 @@ class GamingView(generic.TemplateView):
     def get(self, request, *args, **kwargs):
 
         context = {}
+        left_questions = QUESTIONS_NUM  # ユーザーが答えなければいけない質問の残数
+        context['left_questions'] = left_questions
 
         # 1問目
         if request.session['started'] == False:
@@ -67,7 +69,7 @@ class GamingView(generic.TemplateView):
             start_datetime = localtime(timezone.now())  # 開始の日付時刻を記憶
             request.session['started'] = True  # ゲーム中ならTrue
             request.session['session_id'] = start_datetime.strftime("%Y%m%d%H%M%S")  # 同ユーザーの異なるゲーム(セッション)を識別
-            qid = request.session['qid_list'].pop(0)  # qid_listからqidをpopする. このリストが空になったらゲーム終了.
+            qid = QUESTIONS_NUM - left_questions + 1  # ユーザーが答える質問のID
 
             # データベースに最初の質問IDを登録
             UserAnswers.objects.create(
@@ -109,17 +111,19 @@ class GamingView(generic.TemplateView):
         results.u_order = u_order
 
         results.save()  # 結果を保存
+        left_questions = int(request.POST.get('left-questions'))
+        left_questions -= 1
 
         # 質問がなくなった場合
-        if len(request.session['qid_list']) == 0:
+        if left_questions == 0:
             print("ゲーム終了！")
             return redirect('/results/')
 
         # 質問がまだある場合
         else:
-
-            print(f"残り{len(request.session['qid_list'])}問です")
-            qid = request.session['qid_list'].pop(0)  # qid_listからqidをpopする. このリストが空になったらゲーム終了.
+            print(f"残り{left_questions}問です")
+            context['left_questions'] = left_questions
+            qid = QUESTIONS_NUM - left_questions + 1  # ユーザーが答える質問のID
 
             # 次の質問を作る
             UserAnswers.objects.create(
@@ -140,7 +144,7 @@ class GamingView(generic.TemplateView):
             context['q_sentence'] = q_sentence[-1]  # ユーザーに提示する質問文
             print(context)
 
-        return JsonResponse(context)
+            return JsonResponse(context)
 
 
 class ResultsView(generic.TemplateView):
