@@ -20,7 +20,6 @@ answer_form.addEventListener("submit", (e) => {
   // 全ての刺激語がチェックされている場合は、フォームを送信する
   if (queue.length >= NUM_STIM) {
 
-    const url = '{% url "gaming" %}';
     const answer = document.getElementById("user-answer");
 		const checkboxes = document.getElementsByName('stimulus');
 		const checkbox_labels = document.getElementsByName('label-stimulus');
@@ -29,6 +28,7 @@ answer_form.addEventListener("submit", (e) => {
     const body = new URLSearchParams();
     body.append("user-answer", answer.value); // ユーザーの解答
     const u_order = queue.join(""); // こんな感じで刺激語の順序を文字列にしてdjango側に渡す
+		console.log("ユーザーが選択した刺激語の順序は "+u_order+" です");
     body.append("u-order", u_order); // ユーザーが選択した刺激語の順序
 		body.append("left-questions", left_questions);
 
@@ -47,6 +47,12 @@ answer_form.addEventListener("submit", (e) => {
         // JSON形式に変換
         return response.json();
       })
+			// 残りの質問が0かどうかを判定し、0なら結果画面へ遷移
+			.then((response) => {
+				if (response.left_questions == 0) window.location.href = url_results;
+				return response;
+			})
+			// 0ではないので次の問題を用意
       .then((response) => {
         // フォームをクリア
         answer.value = "";
