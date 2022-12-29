@@ -111,16 +111,17 @@ class GamingView(generic.TemplateView):
         results.save()  # 結果を保存
         left_questions = int(request.POST.get('left-questions'))
         left_questions -= 1
+        context['left_questions'] = left_questions
 
         # 質問がなくなった場合
         if left_questions == 0:
             print("ゲーム終了！")
-            return redirect('/results/')
+            # return redirect('/results/')
+            return JsonResponse(context)
 
         # 質問がまだある場合
         else:
             print(f"残り{left_questions}問です")
-            context['left_questions'] = left_questions
             qid = QUESTIONS_NUM - left_questions + 1  # ユーザーが答える質問のID
 
             # 次の質問を作る
