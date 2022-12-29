@@ -117,6 +117,7 @@ class GamingView(generic.TemplateView):
         if left_questions == 0:
             print("ゲーム終了！")
             # return redirect('/results/')
+            request.session['status'] = 1  # ゲーム中ではないので 2^1(2) を減算
             return JsonResponse(context)
 
         # 質問がまだある場合
