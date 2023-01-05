@@ -142,5 +142,9 @@ class ResultsView(generic.TemplateView):
     def get(self, request, *args, **kwargs):
 
         request.session['status'] = 1  # ゲーム中ではないので 2^1(2) を減算
+        raw_results = list(
+            UserAnswers.objects.filter(user=request.user, session_id=request.session['session_id']).values('qid', 'user_answer')
+        )  # ログインユーザーの今回の結果をモデルから取得しリストにする
+        print(raw_results)
 
         return super().get(request, **kwargs)
