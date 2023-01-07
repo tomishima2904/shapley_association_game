@@ -4,59 +4,74 @@
 {% block title %}ゲーム中{% endblock %}
 
 {% block contents %}
-<a href="{% url 'game:results' %}" class="text-blue-800 underline">結果画面へ</a>
 
 <script>
-	var left_questions = {{left_questions | safe }};  // 残りの質問数
-	var queue = [];  // ユーザーが選択した刺激語の順序を格納
-	const url_results = {% url 'game:results' %};  // 結果画面に遷移するためのurlもここで定義
+  var left_questions = {{left_questions | safe }};  // 残りの質問数
+  var queue = [];  // ユーザーが選択した刺激語の順序を格納
+  const url_results = {% url 'game:results' %};  // 結果画面に遷移するためのurlもここで定義
 </script>
 
 <!-- 5つの刺激語をcheckbox形式で羅列している -->
-<div class="flex items-center mb-4">
-	<input id="stimulus-1" type="checkbox" value="stimulus-1" name="stimulus" class="custom-checkbox">
-	<label id="label-stimulus-1" for="stimulus-1" name="label-stimulus" class="checkbox-label">
-		{{ stimuli.0 }}
-	</label>
-</div>
+<ul class="grid w-full gap-6 md:grid-cols-3 m-5">
+  <li>
+    <input id="stimulus-1" type="checkbox" value="stimulus-1" name="stimulus" class="hidden peer">
+    <label id="label-stimulus-1" for="stimulus-1" name="label-stimulus" class="checkbox-label">
+      <div class="block">
+        {{ stimuli.0 }}
+      </div>
+    </label>
+  </li>
 
-<div class="flex items-center mb-4">
-	<input id="stimulus-2" type="checkbox" value="stimulus-2" name="stimulus" class="custom-checkbox">
-	<label id="label-stimulus-2" for="stimulus-2" name="label-stimulus" class="checkbox-label">
-		{{ stimuli.1 }}
-	</label>
-</div>
+  <li>
+    <input id="stimulus-2" type="checkbox" value="stimulus-2" name="stimulus" class="hidden peer">
+    <label id="label-stimulus-2" for="stimulus-2" name="label-stimulus" class="checkbox-label">
+      <div class="block">
+        {{ stimuli.1 }}
+      </div>
+    </label>
+  </li>
 
-<div class="flex items-center mb-4">
-	<input id="stimulus-3" type="checkbox" value="stimulus-3" name="stimulus" class="custom-checkbox">
-	<label id="label-stimulus-3" for="stimulus-3" name="label-stimulus" class="checkbox-label">
-		{{ stimuli.2 }}
-	</label>
-</div>
+  <li>
+    <input id="stimulus-3" type="checkbox" value="stimulus-3" name="stimulus" class="hidden peer">
+    <label id="label-stimulus-3" for="stimulus-3" name="label-stimulus" class="checkbox-label">
+      <div class="block">
+        {{ stimuli.2 }}
+      </div>
+    </label>
+  </li>
 
-<div class="flex items-center mb-4">
-	<input id="stimulus-4" type="checkbox" value="stimulus-4" name="stimulus" class="custom-checkbox">
-	<label id="label-stimulus-4" for="stimulus-4" name="label-stimulus" class="checkbox-label">
-		{{ stimuli.3 }}
-	</label>
-</div>
+  <li>
+    <input id="stimulus-4" type="checkbox" value="stimulus-4" name="stimulus" class="hidden peer">
+    <label id="label-stimulus-4" for="stimulus-4" name="label-stimulus" class="checkbox-label">
+      <div class="block">
+        {{ stimuli.3 }}
+      </div>
+    </label>
+  </li>
 
-<div class="flex items-center mb-4">
-	<input id="stimulus-5" type="checkbox" value="stimulus-5" name="stimulus" class="custom-checkbox">
-	<label id="label-stimulus-5" for="stimulus-5" name="label-stimulus" class="checkbox-label">
-		{{ stimuli.4 }}
-	</label>
-</div>
+  <li>
+    <input id="stimulus-5" type="checkbox" value="stimulus-5" name="stimulus" class="hidden peer">
+    <label id="label-stimulus-5" for="stimulus-5" name="label-stimulus" class="checkbox-label">
+      <div class="block">
+        {{ stimuli.4 }}
+      </div>
+    </label>
+  </li>
+</ul>
 
-{{ q_sentence }}
+<div. class="mb-5 text-lg font-medium text-gray-900 dark:text-white">
+  {{ q_sentence }}
+</div.
 
-<form id="answer-form" name="answer-form" class="w-full max-w-sm" method="POST">
-	{% csrf_token %}
-	<!-- {{ form.answer }} Django独自のform -->
-	<input id="user-answer" type="text" name="user-answer" required="required"
-	class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-	<button id="submit-button" class="bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2" type="submit">解答</button>
+<form id="answer-form" name="answer-form" class="w-full max-w-sm m-5" method="POST">
+  {% csrf_token %}
+  <!-- {{ form.answer }} Django独自のform -->
+  <input id="user-answer" type="text" name="user-answer" required="required" placeholder="解答を入力"
+  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-gray-400">
+  <button id="submit-button" class="bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2 m-5" type="submit">解答</button>
 </form>
+
+<a href="{% url 'game:results' %}" class="text-blue-800 underline">結果画面へ</a>
 
 <!--ゲーム中の処理を行うjsを読み込む-->
 <script type="module" src="{% static 'js/fetch.js' %}"></script>
