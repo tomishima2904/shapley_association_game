@@ -1677,8 +1677,8 @@ Custimize styles using @apply
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
-.checkbox_icon {
-  text-align: right;
+.checkbox-icon {
+  margin-left: 1.25rem;
 }
 
 /*
