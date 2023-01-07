@@ -22,7 +22,7 @@ Custimize styles using @apply
 }
 
 .checkbox_icon {
-  @apply rounded-full;
+  @apply text-right;
 }
 
 /*

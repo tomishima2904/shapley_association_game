@@ -1678,7 +1678,7 @@ Custimize styles using @apply
 }
 
 .checkbox_icon {
-  border-radius: 9999px;
+  text-align: right;
 }
 
 /*
