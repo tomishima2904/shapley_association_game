@@ -17,7 +17,7 @@
     <input id="stimulus-1" type="checkbox" value="stimulus-1" name="stimulus" class="hidden peer">
     <label id="label-stimulus-1" for="stimulus-1" name="label-stimulus" class="checkbox-label">
       <div class="block">
-        {{ stimuli.0 }}
+        <div class="w-full text-lg font-semibold">{{ stimuli.0 }}</div>
       </div>
     </label>
   </li>
@@ -26,7 +26,7 @@
     <input id="stimulus-2" type="checkbox" value="stimulus-2" name="stimulus" class="hidden peer">
     <label id="label-stimulus-2" for="stimulus-2" name="label-stimulus" class="checkbox-label">
       <div class="block">
-        {{ stimuli.1 }}
+        <div class="w-full text-lg font-semibold">{{ stimuli.1 }}</div>
       </div>
     </label>
   </li>
@@ -35,7 +35,7 @@
     <input id="stimulus-3" type="checkbox" value="stimulus-3" name="stimulus" class="hidden peer">
     <label id="label-stimulus-3" for="stimulus-3" name="label-stimulus" class="checkbox-label">
       <div class="block">
-        {{ stimuli.2 }}
+        <div class="w-full text-lg font-semibold">{{ stimuli.2 }}</div>
       </div>
     </label>
   </li>
@@ -44,7 +44,7 @@
     <input id="stimulus-4" type="checkbox" value="stimulus-4" name="stimulus" class="hidden peer">
     <label id="label-stimulus-4" for="stimulus-4" name="label-stimulus" class="checkbox-label">
       <div class="block">
-        {{ stimuli.3 }}
+        <div class="w-full text-lg font-semibold">{{ stimuli.3 }}</div>
       </div>
     </label>
   </li>
@@ -53,15 +53,15 @@
     <input id="stimulus-5" type="checkbox" value="stimulus-5" name="stimulus" class="hidden peer">
     <label id="label-stimulus-5" for="stimulus-5" name="label-stimulus" class="checkbox-label">
       <div class="block">
-        {{ stimuli.4 }}
+        <div class="w-full text-lg font-semibold">{{ stimuli.4 }}</div>
       </div>
     </label>
   </li>
 </ul>
 
-<div. class="mb-5 text-lg font-medium text-gray-900 dark:text-white">
+<div class="mb-5 text-lg font-medium text-gray-900 dark:text-white">
   {{ q_sentence }}
-</div.
+</div>
 
 <form id="answer-form" name="answer-form" class="w-full max-w-sm m-5" method="POST">
   {% csrf_token %}

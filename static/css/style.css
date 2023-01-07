@@ -3,19 +3,26 @@
 @tailwind utilities;
 
 /*
- Custimize styles using @apply
+Custimize styles using @apply
 */
 
 .btn-blue {
-    @apply bg-blue-400 font-semibold text-white text-center w-fit py-2 px-4 rounded hover:bg-blue-500;
+  @apply bg-blue-400 font-semibold text-white text-center w-fit py-2 px-4 rounded hover:bg-blue-500;
 }
 
 .custom-checkbox {
-    @apply w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600
+  @apply w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300  dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600;
+  @apply focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2;
 }
 
 .checkbox-label {
-    @apply inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700
+  @apply inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800;
+  @apply peer-checked:border-blue-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600;
+  @apply hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700;
+}
+
+.checkbox_icon {
+  @apply rounded-full;
 }
 
 /*
