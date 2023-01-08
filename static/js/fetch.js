@@ -21,7 +21,8 @@ answer_form.addEventListener("submit", (e) => {
   if (queue.length >= NUM_STIM) {
     const answer = document.getElementById("user-answer");
     const checkboxes = document.getElementsByName("stimulus");
-    const checkbox_labels = document.getElementsByName("label-stimulus");
+    const checkbox_labels = document.querySelectorAll("div.checkbox-label-content");
+    const checkbox_icons = document.querySelectorAll("div.checkbox-icon");
 
     // URLのクエリパラメータを管理
     const body = new URLSearchParams();
@@ -55,10 +56,11 @@ answer_form.addEventListener("submit", (e) => {
       .then((response) => {
         // フォームをクリア
         answer.value = "";
-        // 刺激語を更新 & チェクボックスをクリアな状態に
+        // 刺激語を更新 & チェックボックスをクリアな状態に
         for (let i = 0; i < NUM_STIM; i++) {
           checkbox_labels[i].innerText = response.stimuli[i];
           checkboxes[i].checked = false;
+          checkbox_icons[i].innerText = "";
         }
         // ユーザーが答えなければいけない質問数を更新する
         left_questions = response.left_questions;
