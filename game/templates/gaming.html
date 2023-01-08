@@ -9,6 +9,16 @@
   var left_questions = {{left_questions | safe }};  // 残りの質問数
   var queue = [];  // ユーザーが選択した刺激語の順序を格納
   const url_results = {% url 'game:results' %};  // 結果画面に遷移するためのurlもここで定義
+
+  function clearCheckboxes(event) {
+    const checkboxes = document.getElementsByName("stimulus");
+    const checkbox_icons = document.querySelectorAll("div.checkbox-icon");
+    for (let i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = false;
+      checkbox_icons[i].innerText = "";
+    }
+    queue = [];
+  }
 </script>
 
 <!-- 5つの刺激語をcheckbox形式で羅列している -->
@@ -63,6 +73,8 @@
     </label>
   </li>
 </ul>
+
+<button onclick="clearCheckboxes()" class="bg-gray-300 hover:bg-gray-200 text-white rounded px-4 py-2">選択解除</button>
 
 <div class="mb-5 text-lg font-medium text-gray-900 dark:text-white">
   {{ q_sentence }}
