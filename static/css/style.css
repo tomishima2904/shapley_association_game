@@ -29,6 +29,18 @@ Custimize styles using @apply
   @apply ml-5;
 }
 
+.table-header {
+	@apply text-sm font-medium text-gray-900 px-6 py-4 text-left;
+}
+
+.table-data-qid {
+	@apply px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900;
+}
+
+.table-data {
+	@apply text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap;
+}
+
 /*
 @apply ml-2 text-sm font-medium text-gray-900 dark:text-gray-300
 */
