@@ -157,4 +157,4 @@ class ResultsView(generic.TemplateView):
             result["q_sentence"] = q_sentence  # レスポンスに格納
         print(context)
 
-        return super().get(request, **kwargs)
+        return self.render_to_response(context)
