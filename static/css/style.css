@@ -21,6 +21,10 @@ Custimize styles using @apply
   @apply hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700;
 }
 
+.checkbox-label-content {
+	@apply w-full text-lg font-semibold;
+}
+
 .checkbox-icon {
   @apply ml-5;
 }
