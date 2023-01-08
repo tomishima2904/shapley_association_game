@@ -4,6 +4,10 @@
 {% block title %}結果{% endblock %}
 
 {% block contents %}
-  <p class="text-green-600">お疲れ様です</p>
+  <p class="text-green-600">{{ user.get_username }} さんの解答</p>
+  {% for result in results %}
+    <p>{{ result.q_sentence }}  解答: {{ result.user_answer }}</p>
+  {% endfor %}
+
   <a href="{% url 'game:index' %}" class="text-blue-800 underline">タイトルへ戻る</a>
 {% endblock %}
