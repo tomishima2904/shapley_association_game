@@ -142,9 +142,19 @@ class ResultsView(generic.TemplateView):
     def get(self, request, *args, **kwargs):
 
         request.session['status'] = 1  # ゲーム中ではないので 2^1(2) を減算
-        raw_results = list(
+        context = {}
+        context["results"] = list(
             UserAnswers.objects.filter(user=request.user, session_id=request.session['session_id']).values('qid', 'user_answer')
         )  # ログインユーザーの今回の結果をモデルから取得しリストにする
-        print(raw_results)
+
+        # ユーザーに提示した質問文を作成
+        for result in context["results"]:
+            stimuli = [
+                list(Words.objects.filter(qid=result["qid"]).values_list(header, flat=True))[0] for header in STIMULI_HEADER
+            ]  # qid（queston id）に対応する刺激語を取得
+            q_sentence = Q_SENTENCES[Words.objects.filter(qid=result["qid"]).values('category')[0]['category']]  # qidに対応する質問文を取得
+            q_sentence = "、".join(stimuli) + q_sentence[-1]  # 刺激語と質問文を連結
+            result["q_sentence"] = q_sentence  # レスポンスに格納
+        print(context)
 
         return super().get(request, **kwargs)
