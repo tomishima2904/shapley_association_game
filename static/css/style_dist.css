@@ -1677,8 +1677,15 @@ Custimize styles using @apply
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
-.checkbox_icon {
-  border-radius: 9999px;
+.checkbox-label-content {
+  width: 100%;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+
+.checkbox-icon {
+  margin-left: 1.25rem;
 }
 
 /*

@@ -24,10 +24,25 @@ function handleCheckboxChange(event) {
   if (queue.includes(changed_checkbox_id) === true) {
     var index = queue.indexOf(changed_checkbox_id);
     queue.splice(index, 1);
+
+    // チェックが外されたチェックボックスの表示番号を削除
+    var unchecked_checkbox_icon = document.getElementById("checkbox-icon-" + changed_checkbox_id);
+    unchecked_checkbox_icon.innerText = "";
+
+    // 全てのチェック済みチェックボックスの表示番号を付け替える
+    if (queue.length > 0){
+      for (let i=0; i<queue.length; i++){
+        var checkbox_icon = document.getElementById("checkbox-icon-" + queue[i]);
+        checkbox_icon.innerText = i + 1;
+      }
+    }
   }
   // チェックがされた場合、リストに刺激語のidを追加
   else {
     queue.push(changed_checkbox_id);
+    // 今チェックされたチェックボックスに表示番号を付ける
+    var checkbox_icon = document.getElementById("checkbox-icon-" + changed_checkbox_id);
+    checkbox_icon.innerText = queue.indexOf(changed_checkbox_id) + 1;
   }
   console.log(queue);
 }
