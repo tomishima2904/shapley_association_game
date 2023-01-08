@@ -1044,6 +1044,10 @@ input:checked + .toggle-bg {
   bottom: 0px;
 }
 
+.right-2 {
+  right: 0.5rem;
+}
+
 .z-50 {
   z-index: 50;
 }
@@ -1074,6 +1078,10 @@ input:checked + .toggle-bg {
 
 .m-5 {
   margin: 1.25rem;
+}
+
+.m-3 {
+  margin: 0.75rem;
 }
 
 .mb-5 {
@@ -1645,16 +1653,17 @@ Custimize styles using @apply
 .checkbox-label {
   display: inline-flex;
   width: 100%;
+  max-width: 24rem;
   cursor: pointer;
   align-items: center;
   justify-content: space-between;
   border-radius: 0.5rem;
   border-width: 2px;
+  padding: 1.25rem;
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-  padding: 1.25rem;
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
@@ -1763,11 +1772,6 @@ Custimize styles using @apply
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-blue-300:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(164 202 254 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-green-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(14 159 110 / var(--tw-bg-opacity));
@@ -1786,6 +1790,11 @@ Custimize styles using @apply
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-blue-300:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(164 202 254 / var(--tw-bg-opacity));
 }
 
 .hover\:text-gray-900:hover {
