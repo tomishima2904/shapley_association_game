@@ -35,7 +35,7 @@ class Command(BaseCommand):
 
             # データ部分の書き込み
             for result in results:
-                writer.writerow(
+                writer.writerow([
                     str(result.id),
                     str(result.datetime),
                     result.session_id,
@@ -44,7 +44,7 @@ class Command(BaseCommand):
                     result.q_order,
                     result.u_order,
                     str(result.user_id)
-                )
+                ])
 
             # 保存ディレクトリのファイルリストを取得
             files = os.listdir(settings.BACKUP_PATH)
@@ -52,6 +52,3 @@ class Command(BaseCommand):
             if len(files) >= settings.NUM_SAVED_BACKUP:
                 files.sort()
                 os.remove(settings.BACKUP_PATH + files[0])
-
-        return super().handle(*args, **options)
-
