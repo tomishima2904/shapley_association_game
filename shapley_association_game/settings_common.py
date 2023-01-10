@@ -23,14 +23,6 @@ env.read_env(os.path.join(BASE_DIR,'.env'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -146,42 +138,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# ロギング設定
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'INFO',
-        },
-        'game': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-        },
-    },
-
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'dev',
-        },
-    },
-
-    'formatters': {
-        'dev': {
-            'format': '\t'.join([
-                '%(asctime)s',
-                '[%(levelname)s]',
-                '%(pathname)s(Line:%(lineno)d)',
-                '%(message)s',
-            ])
-        },
-    }
-}
-
 # 静的ファイル(cssや画像等)が配置されている場所を設定する
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
@@ -194,9 +150,6 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 SESSION_SAVE_EVERY_REQUEST = True
-
-# メール処理で使うバックエンドを定義
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # 参照するユーザーモデルをaccountsアプリで作成したmodelにする
 AUTH_USER_MODEL = 'accounts.CustomUser'
