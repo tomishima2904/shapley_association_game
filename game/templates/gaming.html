@@ -21,12 +21,14 @@
   }
 </script>
 
+<button onclick="clearCheckboxes()" class="bg-gray-300 hover:bg-gray-200 text-white rounded px-4 py-2 m-2 right-2">選択解除</button>
+
 <!-- 5つの刺激語をcheckbox形式で羅列している -->
-<ul class="grid w-full gap-6 md:grid-cols-3 m-5">
+<ul class="grid w-full gap-6 md:grid-cols-3 m-3">
   <li>
     <input id="stimulus-1" type="checkbox" value="stimulus-1" name="stimulus" class="hidden peer">
     <label id="label-stimulus-1" for="stimulus-1" name="label-stimulus" class="checkbox-label">
-      <div class="flex justify-start">
+      <div class="flex justify-between">
         <div class="checkbox-label-content">{{ stimuli.0 }}</div>
         <div id="checkbox-icon-1" class="checkbox-icon"></div>
       </div>
@@ -74,13 +76,11 @@
   </li>
 </ul>
 
-<button onclick="clearCheckboxes()" class="bg-gray-300 hover:bg-gray-200 text-white rounded px-4 py-2">選択解除</button>
-
 <div class="mb-5 text-lg font-medium text-gray-900 dark:text-white">
   {{ q_sentence }}
 </div>
 
-<form id="answer-form" name="answer-form" class="w-full max-w-sm m-5" method="POST">
+<form id="answer-form" name="answer-form" class="w-full max-w-sm m-5 flex justify-start" method="POST">
   {% csrf_token %}
   <!-- {{ form.answer }} Django独自のform -->
   <input id="user-answer" type="text" name="user-answer" required="required" placeholder="解答を入力"

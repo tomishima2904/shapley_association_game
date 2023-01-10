@@ -155,6 +155,6 @@ class ResultsView(generic.TemplateView):
             q_sentence = Q_SENTENCES[Words.objects.filter(qid=result["qid"]).values('category')[0]['category']]  # qidに対応する質問文を取得
             q_sentence = "、".join(stimuli) + q_sentence[-1]  # 刺激語と質問文を連結
             result["q_sentence"] = q_sentence  # レスポンスに格納
-        print(context)
+        # print(context)
 
         return self.render_to_response(context)
