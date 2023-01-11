@@ -4,5 +4,36 @@
 {% block title %}結果{% endblock %}
 
 {% block contents %}
-	<a href="{% url 'game:index' %}" class="text-blue-800 underline">タイトルへ戻る</a>
+  <p class="text-green-600">{{ user.get_username }} さんの解答</p>
+
+  <div class="flex flex-col">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="overflow-hidden">
+          <table class="min-w-full">
+            <thead class="border-b">
+              <tr>
+                <th scope="col" class="table-header">ID</th>
+                <th scope="col" class="table-header">質問</th>
+                <th scope="col" class="table-header">解答</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for result in results %}
+              <tr class="bg-gray-100 border-b">
+                <td class="table-data-qid">{{ result.qid }}</td>
+                <td class="table-data">{{ result.q_sentence }}</td>
+                <td class="table-data">{{ result.user_answer }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-center flex-col mt-5">
+    <a href="{% url 'game:index' %}" class="btn-blue">タイトルへ戻る</a>
+  </div>
 {% endblock %}

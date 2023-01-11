@@ -8,12 +8,20 @@ from .models import Words, UserAnswers
 
 import random
 import copy
+import json
+from typing import List, Tuple, Dict, Any, Union
 
 
 STIMULI_NUM = 5  # 刺激語の数
-STIMULI_HEADER = [f"stimulus_{i+1}" for i in range(STIMULI_NUM)]
-STIMULI_ORDER = [i for i in range(STIMULI_NUM)]
-RAMDOM_ORDER = False  # False ならばDBに載っている刺激語の順に提示
+QUESTIONS_NUM = 2  # 本当は 87 だが開発用に 2
+STIMULI_HEADER = [f"stimulus_{i+1}" for i in range(STIMULI_NUM)]  # DB中から刺激語を探す時に使う用のヘッダー
+STR_STIMULI_ORDER = [str(order+1) for order in range(STIMULI_NUM)]  # DBに保存する用の刺激語の提示順を表した文字列
+
+RAMDOM_ORDER = False  # False ならばDBに載っている刺激語の順に提示（現在は実装予定無し）
+
+# 質問のカテゴリに応じた質問文の辞書
+with open ("data/input_sentences.json", encoding='utf-8') as f:
+    Q_SENTENCES = json.load(f)
 
 class IndexView(generic.TemplateView):
 
@@ -22,26 +30,9 @@ class IndexView(generic.TemplateView):
     def get(self, request, *args, **kwargs):
 
         # ログインしてから初めてタイトル画面を訪れた場合
-        if not 'visited' in request.session:
+        if not 'status' in request.session:
             print("Hello!")
-            request.session['visited'] = True
-
-        request.session['started'] = False  # ゲームがスタートしたらTrueにする
-        request.session['qid_list'] = [1, 2, 4]  # 解答しなければいけない質問(qid)のリスト(仮)
-
-        # ランダムに刺激語を提示する場合
-        if RAMDOM_ORDER:
-            stimuli_order = copy.copy(STIMULI_ORDER)
-            request.session['stimuli_order'] = random.shuffle(stimuli_order)
-            stimuli_header = copy.copy(STIMULI_HEADER)
-            request.session['stimuli_header'] = [stimuli_header[i] for i in range(stimuli_order)]
-
-        else:
-            request.session['stimuli_order'] = copy.copy(STIMULI_ORDER)
-            request.session['stimuli_header'] = copy.copy(STIMULI_HEADER)
-
-        str_stimuli_order = [str(order+1) for order in request.session['stimuli_order']]
-        request.session['q_order'] = ''.join(str_stimuli_order)
+            request.session['status'] = 1  # ログイン画面に訪れたことが一度でもあれば status に 2^0(1) を加算
 
         return super().get(request, **kwargs)
 
@@ -55,15 +46,17 @@ class GamingView(generic.TemplateView):
     def get(self, request, *args, **kwargs):
 
         context = {}
+        left_questions = QUESTIONS_NUM
+        context['left_questions'] = left_questions  # ユーザーが答えなければいけない質問の残数
+        qid = QUESTIONS_NUM - left_questions + 1  # ユーザーが答える質問のID
 
-        # 1問目
-        if request.session['started'] == False:
+        # 1問目の場合
+        if request.session['status'] == 1:
 
             print("Game Start!")
             start_datetime = localtime(timezone.now())  # 開始の日付時刻を記憶
-            request.session['started'] = True  # ゲーム中ならTrue
+            request.session['status'] = 3  # ゲーム中なら status に 2^1(2) を加算
             request.session['session_id'] = start_datetime.strftime("%Y%m%d%H%M%S")  # 同ユーザーの異なるゲーム(セッション)を識別
-            qid = request.session['qid_list'].pop(0)  # qid_listからqidをpopする. このリストが空になったらゲーム終了.
 
             # データベースに最初の質問IDを登録
             UserAnswers.objects.create(
@@ -71,14 +64,18 @@ class GamingView(generic.TemplateView):
                 datetime=start_datetime,
                 session_id=request.session['session_id'],
                 qid=qid,
-                q_order = request.session['q_order']
+                q_order = ''.join(STR_STIMULI_ORDER)  # ユーザーに提示する刺激語の順序
             )
 
-        context['stimuli'] = {
-            header: list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in request.session['stimuli_header']
-        }  # qidに該当する刺激後を抽出する
+        # context['stimuli']: Dict = {
+        #     header: list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in STIMULI_HEADER
+        # }  # qidに該当する刺激後を抽出する
+        context['stimuli']: List = [
+            list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in STIMULI_HEADER
+        ]
+        q_sentence = Q_SENTENCES[Words.objects.filter(qid=qid).values('category')[0]['category']]  # qidのカテゴリに応じた質問文を用意
+        context['q_sentence'] = q_sentence[-1]  # ユーザーに提示する質問文
         print(context)
-        context['status_message'] = "スタート!"
 
         return render(request, self.template_name, context)
 
@@ -87,22 +84,34 @@ class GamingView(generic.TemplateView):
     def post(self, request, *args, **kwargs):
 
         context = {}
+        results = UserAnswers.objects.filter(user=request.user).last()  # テーブルの最後のクエリを抽出
+
+        # fetchで送信されるユーザーの解答をモデルに保存
         user_answer = request.POST.get('user-answer')  # 解答フォームから解答を受け取る
         print(f"'{user_answer}'と解答されました")
-        results = UserAnswers.objects.filter(user=request.user).last()  # テーブルの最後のクエリを抽出
         results.user_answer = user_answer  # ユーザーの解答を記録
+
+        # fetchで送信されるユーザーが選択した刺激語の順序をモデルに保存
+        u_order = request.POST.get('u-order')  # ユーザーが選択した刺激語の順序を受け取る
+        print(f"ユーザーが選択した順序は {u_order} です")
+        results.u_order = u_order
+
         results.save()  # 結果を保存
+        left_questions = int(request.POST.get('left-questions'))
+        left_questions -= 1
+        context['left_questions'] = left_questions  # ユーザーが答えなければいけない質問の残数
 
         # 質問がなくなった場合
-        if len(request.session['qid_list']) == 0:
+        if left_questions == 0:
             print("ゲーム終了！")
-            return redirect('game:results')  # 結果画面に遷移
+            # return redirect('/results/')  # 本当はこのようにサーバー側で遷移させたかったがうまくいかんのでjsで制御
+            request.session['status'] = 1  # ゲーム中ではないので 2^1(2) を減算
+            return JsonResponse(context)
 
         # 質問がまだある場合
         else:
-
-            print(f"残り{len(request.session['qid_list'])}問です")
-            qid = request.session['qid_list'].pop(0)  # qid_listからqidをpopする. このリストが空になったらゲーム終了.
+            print(f"残り{left_questions}問です")
+            qid = QUESTIONS_NUM - left_questions + 1  # ユーザーが答える質問のID
 
             # 次の質問を作る
             UserAnswers.objects.create(
@@ -110,15 +119,20 @@ class GamingView(generic.TemplateView):
                 datetime=localtime(timezone.now()),
                 session_id=request.session['session_id'],
                 qid=qid,
-                q_order = request.session['q_order']
+                q_order = ''.join(STR_STIMULI_ORDER)  # ユーザーに提示する刺激語の順序
             )
 
-            context['stimuli'] = {
-                header: list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in request.session['stimuli_header']
-            }  # qidに該当する刺激後を抽出する
+            # context['stimuli']: Dict = {
+            #     header: list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in STIMULI_HEADER
+            # }  # qidに該当する刺激後を抽出する
+            context['stimuli']: List = [
+                list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in STIMULI_HEADER
+            ]
+            q_sentence = Q_SENTENCES[Words.objects.filter(qid=qid).values('category')[0]['category']]  # qidのカテゴリに応じた質問文を用意
+            context['q_sentence'] = q_sentence[-1]  # ユーザーに提示する質問文
             print(context)
 
-        return JsonResponse(context)
+            return JsonResponse(context)
 
 
 class ResultsView(generic.TemplateView):
@@ -127,6 +141,20 @@ class ResultsView(generic.TemplateView):
 
     def get(self, request, *args, **kwargs):
 
-        request.session['started'] = False
+        request.session['status'] = 1  # ゲーム中ではないので 2^1(2) を減算
+        context = {}
+        context["results"] = list(
+            UserAnswers.objects.filter(user=request.user, session_id=request.session['session_id']).values('qid', 'user_answer')
+        )  # ログインユーザーの今回の結果をモデルから取得しリストにする
 
-        return super().get(request, **kwargs)
+        # ユーザーに提示した質問文を作成
+        for result in context["results"]:
+            stimuli = [
+                list(Words.objects.filter(qid=result["qid"]).values_list(header, flat=True))[0] for header in STIMULI_HEADER
+            ]  # qid（queston id）に対応する刺激語を取得
+            q_sentence = Q_SENTENCES[Words.objects.filter(qid=result["qid"]).values('category')[0]['category']]  # qidに対応する質問文を取得
+            q_sentence = "、".join(stimuli) + q_sentence[-1]  # 刺激語と質問文を連結
+            result["q_sentence"] = q_sentence  # レスポンスに格納
+        # print(context)
+
+        return self.render_to_response(context)

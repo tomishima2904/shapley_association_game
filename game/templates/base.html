@@ -7,7 +7,7 @@
     <title>{% block title %}{% endblock %}</title>
 
     <!--CSS-->
-    <link
+    <!--<link
       rel="stylesheet"
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
     />
@@ -15,8 +15,8 @@
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Philosopher"
-    />
-    <link rel="icon"  href="{% static 'ico/favicon.ico' %}">
+    />-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style_dist.css' %}">
 
     {% block head %}{% endblock %}
   </head>
@@ -29,7 +29,7 @@
           <li class="m-3.5">
             <div class="text-black-500 text-xl">
               {% if user.is_authenticated %}
-                <p>{{ user.get_username }}でログイン中</p>
+                <p>{{ user.get_username }} さん</p>
               {% else %}
                 <p>ログインしていません</p>
               {% endif %}
@@ -46,6 +46,8 @@
     <p class="border-solid border-2 border-b-slate-800"></p>
 
     {% block contents %}{% endblock %}
+
+    <!--<script src="../../node_modules/flowbite/dist/flowbite.min.js"></script>-->
 
   </body>
 </html>

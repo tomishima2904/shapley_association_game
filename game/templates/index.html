@@ -4,7 +4,10 @@
 
 {% block contents %}
 <div class="flex items-center flex-col mt-32">
-  <a href="{% url 'account_login' %}" class="text-5xl bg-green-400 font-semibold text-white text-center w-fit py-2 px-4 rounded hover:bg-green-500">ログイン</a><br>
-  <a href="{% url 'game:gaming' %}" class="text-5xl bg-blue-400 font-semibold text-white text-center w-fit py-2 px-4 rounded hover:bg-blue-500">ゲームスタート</a>
+  {% if user.is_authenticated %}
+    <a href="{% url 'game:gaming' %}" class="text-5xl btn-blue">ゲームスタート</a>
+  {% else %}
+    <a href="{% url 'account_login' %}" class="text-5xl bg-green-400 font-semibold text-white text-center w-fit py-2 px-4 rounded hover:bg-green-500">こちらからログイン</a><br>
+  {% endif %}
 </div>
 {% endblock %}
