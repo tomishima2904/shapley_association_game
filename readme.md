@@ -78,6 +78,12 @@ python manage.py migrate
 これでデータベース関連の前準備は一応完了。superuserとかも作っておくと便利なので[discussions](https://github.com/tomishima2904/shapley_association_game/discussions/14)の内容を参考にsuperuserも作ってみよう。
 
 
+### npmでパッケージをインストール
+Javascript関係のモジュールをインストールするため、下記のコマンドを実行する。
+```
+npm install
+```
+
 # Gitの運用方法
 [gitflow](https://qiita.com/katsunory/items/252c5fd2f70480af9bbb)という運用方法で行う。
 この方法では基本的に`master`ではなく`develop`ブランチへpush等を行う。
