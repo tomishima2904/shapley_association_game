@@ -21,7 +21,7 @@
   }
 </script>
 
-<button onclick="clearCheckboxes()" class="bg-gray-300 hover:bg-gray-200 text-white rounded px-4 py-2 m-2 right-2">選択解除</button>
+<button onclick="clearCheckboxes()" class="bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2 m-2 right-2">選択解除</button>
 
 <!-- 5つの刺激語をcheckbox形式で羅列している -->
 <ul class="grid w-full gap-6 md:grid-cols-3 m-3">
@@ -76,7 +76,7 @@
   </li>
 </ul>
 
-<div class="mb-5 text-lg font-medium text-gray-900 dark:text-white">
+<div class="mb-5 text-3xl font-medium text-black dark:text-black text-right mr-44">
   {{ q_sentence }}
 </div>
 
@@ -84,11 +84,13 @@
   {% csrf_token %}
   <!-- {{ form.answer }} Django独自のform -->
   <input id="user-answer" type="text" name="user-answer" required="required" placeholder="解答を入力"
-  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-gray-400">
-  <button id="submit-button" class="bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2 m-5" type="submit">解答</button>
+  class="bg-gray-100 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-gray-400">
+  <button id="submit-button" class="w-fit text-center bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2 m-5 text-xl" type="submit">解答</button>
 </form>
 
-<a href="{% url 'game:results' %}" class="text-blue-800 underline">結果画面へ</a>
+<div class="flex items-center flex-col mt-16">
+  <a href="{% url 'game:results' %}" class=" bg-green-400 font-semibold text-white text-center w-fit py-2 px-4 rounded hover:bg-green-500 text-xl">結果画面へ</a>
+</div>
 
 <!--ゲーム中の処理を行うjsを読み込む-->
 <script type="module" src="{% static 'js/fetch.js' %}"></script>
