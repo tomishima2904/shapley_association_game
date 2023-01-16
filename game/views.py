@@ -29,7 +29,6 @@ class IndexView(generic.TemplateView):
 
     def get(self, request, *args, **kwargs):
 
-        print(f"Hello !")
         if not 'status' in request.session:
             request.session['status'] = 1  # 通常状態として status に 2^0(1) を加算
 
@@ -80,7 +79,6 @@ class GamingView(generic.TemplateView):
         ]
         q_sentence = Q_SENTENCES[Words.objects.filter(qid=qid).values('category')[0]['category']]  # qidのカテゴリに応じた質問文を用意
         context['q_sentence'] = q_sentence[-1]  # ユーザーに提示する質問文
-        print(context)
 
         return render(request, self.template_name, context)
 
@@ -93,12 +91,12 @@ class GamingView(generic.TemplateView):
 
         # fetchで送信されるユーザーの解答をモデルに保存
         user_answer = request.POST.get('user-answer')  # 解答フォームから解答を受け取る
-        print(f"'{user_answer}'と解答されました")
+        # print(f"'{user_answer}'と解答されました")
         results.user_answer = user_answer  # ユーザーの解答を記録
 
         # fetchで送信されるユーザーが選択した刺激語の順序をモデルに保存
         u_order = request.POST.get('u-order')  # ユーザーが選択した刺激語の順序を受け取る
-        print(f"ユーザーが選択した順序は {u_order} です")
+        # print(f"ユーザーが選択した順序は {u_order} です")
         results.u_order = u_order
 
         results.save()  # 結果を保存
@@ -115,7 +113,7 @@ class GamingView(generic.TemplateView):
 
         # 質問がまだある場合
         else:
-            print(f"残り{left_questions}問です")
+            # print(f"残り{left_questions}問です")
             qid = QUESTIONS_NUM - left_questions + 1  # ユーザーが答える質問のID
 
             # 次の質問を作る
@@ -135,7 +133,6 @@ class GamingView(generic.TemplateView):
             ]
             q_sentence = Q_SENTENCES[Words.objects.filter(qid=qid).values('category')[0]['category']]  # qidのカテゴリに応じた質問文を用意
             context['q_sentence'] = q_sentence[-1]  # ユーザーに提示する質問文
-            print(context)
 
             return JsonResponse(context)
 
