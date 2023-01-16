@@ -49,7 +49,10 @@ answer_form.addEventListener("submit", (e) => {
       })
       // 残りの質問が0かどうかを判定し、0なら結果画面へ遷移
       .then((response) => {
-        if (response.left_questions == 0) window.location.href = url_results;
+        if (response.left_questions == 0) {
+          window.onbeforeunload = null;
+          window.location.href = url_results;
+        }
         return response;
       })
       // 0ではないので次の問題を用意
