@@ -19,6 +19,10 @@
     }
     queue = [];
   }
+
+  console.log("okinawa");
+  window.onbeforeunload = () => "画面を離れても良い？";
+
 </script>
 
 <button onclick="clearCheckboxes()" class="bg-gray-300 hover:bg-gray-200 text-white rounded px-4 py-2 m-2 right-2">選択解除</button>
