@@ -29,9 +29,11 @@ class IndexView(generic.TemplateView):
 
     def get(self, request, *args, **kwargs):
 
-        # ログインしてから初めてタイトル画面を訪れた場合
-        if not 'status' in request.session:
-            print("Hello!")
+        if (not request.user.is_authenticated) or (not 'status' in request.session):
+            request.session['status'] = 0  # ログイン状態ならstatus に 2^0(1) を加算
+
+        else:
+            print(f"Hello {request.user} !")
             request.session['status'] = 1  # ログイン画面に訪れたことが一度でもあれば status に 2^0(1) を加算
 
         return super().get(request, **kwargs)
@@ -44,6 +46,10 @@ class GamingView(generic.TemplateView):
 
     # gaming.htmlに遷移されたら行われるGETメソッド
     def get(self, request, *args, **kwargs):
+
+        # ログインしていない場合タイトル画面へリダイレクト
+        if (not request.user.is_authenticated) or (not 'status' in request.session):
+            return redirect('/')
 
         context = {}
         left_questions = QUESTIONS_NUM
@@ -140,6 +146,10 @@ class ResultsView(generic.TemplateView):
     template_name = "results.html"
 
     def get(self, request, *args, **kwargs):
+
+        # ログインしていない場合タイトル画面へリダイレクト
+        if (not request.user.is_authenticated) or (not 'status' in request.session):
+            return redirect('/')
 
         request.session['status'] = 1  # ゲーム中ではないので 2^1(2) を減算
         context = {}
