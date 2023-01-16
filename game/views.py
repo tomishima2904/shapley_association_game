@@ -29,12 +29,9 @@ class IndexView(generic.TemplateView):
 
     def get(self, request, *args, **kwargs):
 
-        if (not request.user.is_authenticated) or (not 'status' in request.session):
-            request.session['status'] = 0  # ログイン状態ならstatus に 2^0(1) を加算
-
-        else:
-            print(f"Hello {request.user} !")
-            request.session['status'] = 1  # ログイン画面に訪れたことが一度でもあれば status に 2^0(1) を加算
+        print(f"Hello !")
+        if not 'status' in request.session:
+            request.session['status'] = 1  # 通常状態として status に 2^0(1) を加算
 
         return super().get(request, **kwargs)
 
@@ -52,17 +49,16 @@ class GamingView(generic.TemplateView):
             return redirect('/')
 
         context = {}
-        left_questions = QUESTIONS_NUM
-        context['left_questions'] = left_questions  # ユーザーが答えなければいけない質問の残数
-        qid = QUESTIONS_NUM - left_questions + 1  # ユーザーが答える質問のID
 
         # 1問目の場合
         if request.session['status'] == 1:
-
             print("Game Start!")
             start_datetime = localtime(timezone.now())  # 開始の日付時刻を記憶
             request.session['status'] = 3  # ゲーム中なら status に 2^1(2) を加算
             request.session['session_id'] = start_datetime.strftime("%Y%m%d%H%M%S")  # 同ユーザーの異なるゲーム(セッション)を識別
+
+            left_questions = QUESTIONS_NUM
+            qid = QUESTIONS_NUM - left_questions + 1  # ユーザーが答える質問のID
 
             # データベースに最初の質問IDを登録
             UserAnswers.objects.create(
@@ -73,9 +69,12 @@ class GamingView(generic.TemplateView):
                 q_order = ''.join(STR_STIMULI_ORDER)  # ユーザーに提示する刺激語の順序
             )
 
-        # context['stimuli']: Dict = {
-        #     header: list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in STIMULI_HEADER
-        # }  # qidに該当する刺激後を抽出する
+        # ゲーム中に誤ってリロード等して再度GamingViewが実行された場合
+        else:
+            qid = UserAnswers.objects.filter(user=request.user).last().qid
+            left_questions = QUESTIONS_NUM - qid + 1
+
+        context['left_questions'] = left_questions  # ユーザーが答えなければいけない質問の残数
         context['stimuli']: List = [
             list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in STIMULI_HEADER
         ]
