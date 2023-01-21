@@ -49,24 +49,38 @@ class GamingView(generic.TemplateView):
 
         context = {}
 
-        # 1問目の場合
+        # index.htmlからgaming.htmlに遷移した時
         if request.session['status'] == 1:
+
             print("Game Start!")
-            start_datetime = localtime(timezone.now())  # 開始の日付時刻を記憶
             request.session['status'] = 3  # ゲーム中なら status に 2^1(2) を加算
-            request.session['session_id'] = start_datetime.strftime("%Y%m%d%H%M%S")  # 同ユーザーの異なるゲーム(セッション)を識別
 
-            left_questions = QUESTIONS_NUM
-            qid = QUESTIONS_NUM - left_questions + 1  # ユーザーが答える質問のID
+            #　ユーザーのゲーム履歴がDB上にない or 最後のセッションですべての質問を解答し終えている場合、新たにゲームを始める
+            if UserAnswers.objects.filter(user=request.user).exists() == False or \
+                UserAnswers.objects.filter(user=request.user).latest('id').user_answer != None:
 
-            # データベースに最初の質問IDを登録
-            UserAnswers.objects.create(
-                user=request.user,
-                datetime=start_datetime,
-                session_id=request.session['session_id'],
-                qid=qid,
-                q_order = ''.join(STR_STIMULI_ORDER)  # ユーザーに提示する刺激語の順序
-            )
+                # ゲームの回を識別するための識別IDを作成
+                start_datetime = localtime(timezone.now())  # 開始の日付時刻を記憶
+                request.session['session_id'] = start_datetime.strftime("%Y%m%d%H%M%S")  # 同ユーザーの最新のゲーム(セッション)ID
+
+                left_questions = QUESTIONS_NUM
+                qid = QUESTIONS_NUM - left_questions + 1  # ユーザーが答える質問のID
+
+                # データベースに最初の質問IDを登録
+                UserAnswers.objects.create(
+                    user=request.user,
+                    datetime=start_datetime,
+                    session_id=request.session['session_id'],
+                    qid=qid,
+                    q_order = ''.join(STR_STIMULI_ORDER)  # ユーザーに提示する刺激語の順序
+                )
+
+            # 前回のセッションでユーザーが途中の質問までしか解答してない場合、途中の質問から答える
+            else:
+                latest_row = UserAnswers.objects.filter(user=request.user).latest('id')
+                request.session['session_id'] = latest_row.session_id
+                qid = latest_row.qid
+                left_questions = QUESTIONS_NUM - qid + 1
 
         # ゲーム中に誤ってリロード等して再度GamingViewが実行された場合
         else:
