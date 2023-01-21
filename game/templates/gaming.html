@@ -24,11 +24,13 @@
 
 </script>
 
-<button onclick="clearCheckboxes()" class="bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2 m-2 right-2">選択解除</button>
+<div class="flex items-center flex-col md:items-start">
+  <button onclick="clearCheckboxes()" class="bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2 m-2 right-2">選択解除</button>
+</div>
 
 <!-- 5つの刺激語をcheckbox形式で羅列している -->
-<ul class="grid w-full gap-6 md:grid-cols-3 m-3">
-  <li>
+<div class="flex flex-col items-center m-3 md:grid md:w-full md:gap-6 md:grid-cols-3">
+  <div class="m-3">
     <input id="stimulus-1" type="checkbox" value="stimulus-1" name="stimulus" class="hidden peer">
     <label id="label-stimulus-1" for="stimulus-1" name="label-stimulus" class="checkbox-label">
       <div class="flex justify-between">
@@ -36,9 +38,9 @@
         <div id="checkbox-icon-1" class="checkbox-icon"></div>
       </div>
     </label>
-  </li>
+  </div>
 
-  <li>
+  <div class="m-3">
     <input id="stimulus-2" type="checkbox" value="stimulus-2" name="stimulus" class="hidden peer">
     <label id="label-stimulus-2" for="stimulus-2" name="label-stimulus" class="checkbox-label">
       <div class="flex justify-start">
@@ -46,9 +48,9 @@
         <div id="checkbox-icon-2" class="checkbox-icon"></div>
       </div>
     </label>
-  </li>
+  </div>
 
-  <li>
+  <div class="m-3">
     <input id="stimulus-3" type="checkbox" value="stimulus-3" name="stimulus" class="hidden peer">
     <label id="label-stimulus-3" for="stimulus-3" name="label-stimulus" class="checkbox-label">
       <div class="flex justify-start">
@@ -56,9 +58,9 @@
         <div id="checkbox-icon-3" class="checkbox-icon"></div>
       </div>
     </label>
-  </li>
+  </div>
 
-  <li>
+  <div class="m-3">
     <input id="stimulus-4" type="checkbox" value="stimulus-4" name="stimulus" class="hidden peer">
     <label id="label-stimulus-4" for="stimulus-4" name="label-stimulus" class="checkbox-label">
       <div class="flex justify-start">
@@ -66,9 +68,9 @@
         <div id="checkbox-icon-4" class="checkbox-icon"></div>
       </div>
     </label>
-  </li>
+  </div>
 
-  <li>
+  <div class="m-3">
     <input id="stimulus-5" type="checkbox" value="stimulus-5" name="stimulus" class="hidden peer">
     <label id="label-stimulus-5" for="stimulus-5" name="label-stimulus" class="checkbox-label">
       <div class="flex justify-start">
@@ -76,20 +78,22 @@
         <div id="checkbox-icon-5" class="checkbox-icon"></div>
       </div>
     </label>
-  </li>
-</ul>
+  </div>
+</div>
 
-<div class="mb-5 text-3xl font-medium text-black dark:text-black text-right mr-44">
+<div class="mb-5 text-3xl font-medium text-black dark:text-black text-center mt-5">
   {{ q_sentence }}
 </div>
 
-<form id="answer-form" name="answer-form" class="w-full max-w-sm m-5 flex justify-start" method="POST">
-  {% csrf_token %}
-  <!-- {{ form.answer }} Django独自のform -->
-  <input id="user-answer" type="text" name="user-answer" required="required" placeholder="解答を入力"
-  class="bg-gray-100 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-gray-400">
-  <button id="submit-button" class="w-fit text-center bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2 m-5 text-xl" type="submit">解答</button>
-</form>
+<div class="flex items-center flex-col mt-16">
+  <form id="answer-form" name="answer-form" class="w-full flex flex-col items-center" method="POST">
+    {% csrf_token %}
+    <!-- {{ form.answer }} Django独自のform -->
+    <input id="user-answer" type="text" name="user-answer" required="required" placeholder="解答を入力"
+    class="bg-gray-100 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-gray-400">
+    <button id="submit-button" class="w-fit text-center bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2 m-5 text-xl" type="submit">解答</button>
+  </form>
+</div>
 
 <div class="flex items-center flex-col mt-16">
   <a href="{% url 'game:results' %}" class=" bg-green-400 font-semibold text-white text-center w-fit py-2 px-4 rounded hover:bg-green-500 text-xl">結果画面へ</a>
