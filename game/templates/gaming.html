@@ -19,6 +19,9 @@
     }
     queue = [];
   }
+
+  window.onbeforeunload = () => "本当に画面を離れてもよろしいですか？";
+
 </script>
 
 <button onclick="clearCheckboxes()" class="bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2 m-2 right-2">選択解除</button>
