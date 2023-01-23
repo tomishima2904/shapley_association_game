@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +8,7 @@ Custimize styles using @apply
 */
 
 .btn-blue {
-  @apply bg-blue-400 font-semibold text-white text-center w-fit py-2 px-4 rounded hover:bg-blue-500;
+  @apply font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full bg-gradient-to-b from-blue-500 to-blue-400 hover:from-blue-400 hover:to-blue-300 shadow-xl;
 }
 
 .custom-checkbox {
@@ -23,7 +24,7 @@ Custimize styles using @apply
 }
 
 .checkbox-label-content {
-	@apply w-full text-3xl font-semibold;
+	@apply w-full text-3xl font-kosugi font-bold;
 }
 
 .checkbox-icon {

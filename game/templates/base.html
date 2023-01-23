@@ -27,7 +27,7 @@
       <nav>
         <ul class="flex uppercase my-3.5 mx-3.5">
           <li class="m-3.5">
-            <div class="text-black-500 text-xl">
+            <div class="text-black-500 text-xl font-kosugi font-bold">
               {% if user.is_authenticated %}
                 <p>{{ user.get_username }} さん</p>
               {% else %}
@@ -36,7 +36,7 @@
             </div>
           </li>
           <li class="m-3.5">
-            <a href="{% url 'account_logout' %}" class="text-xl font-semibold text-white text-center w-fit py-2 px-4 rounded-full bg-gradient-to-b from-blue-500 to-blue-400 hover:from-blue-400 hover:to-blue-300 shadow-xl">ログアウト</a>
+            <a href="{% url 'account_logout' %}" class="text-xl btn-blue">ログアウト</a>
           </li>
         </ul>
       </nav>
