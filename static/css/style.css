@@ -17,13 +17,13 @@ Custimize styles using @apply
 
 .checkbox-label {
   @apply inline-flex items-center justify-between w-full max-w-sm p-5 border-2 rounded-lg cursor-pointer;
-	@apply text-gray-500 bg-white border-gray-200 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800;
-  @apply peer-checked:border-blue-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600;
-  @apply hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700;
+	@apply text-gray-500 bg-white border-gray-200;
+  @apply peer-checked:border-blue-600 peer-checked:text-gray-600;
+  @apply hover:text-gray-600 hover:bg-gray-50;
 }
 
 .checkbox-label-content {
-	@apply w-full text-lg font-semibold;
+	@apply w-full text-4xl font-semibold;
 }
 
 .checkbox-icon {

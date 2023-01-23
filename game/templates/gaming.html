@@ -24,12 +24,12 @@
 
 </script>
 
-<div class="text-3xl text-center font-medium text-black mb-3 mt-6">
+<div class="text-5xl text-center font-bold text-black mb-3 mt-6">
   連想に役立った順に選択してください
 </div>
 
-<div class="flex items-center flex-col md:items-start">
-  <button onclick="clearCheckboxes()" class="bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2 m-2 right-2">選択解除</button>
+<div class="flex items-center flex-col md:items-end">
+  <button onclick="clearCheckboxes()" class="bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2 m-2 right-2 text-3xl md:mr-16">選択解除</button>
 </div>
 
 <!-- 5つの刺激語をcheckbox形式で羅列している -->
@@ -85,7 +85,7 @@
   </div>
 </div>
 
-<div class="mb-5 text-3xl font-medium text-black text-center mt-5">
+<div class="mb-5 text-5xl font-bold text-black text-center mt-5">
   {{ q_sentence }}
 </div>
 
@@ -94,8 +94,8 @@
     {% csrf_token %}
     <!-- {{ form.answer }} Django独自のform -->
     <input id="user-answer" type="text" name="user-answer" required="required" placeholder="解答を入力"
-    class="bg-gray-100 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5 placeholder-gray-400">
-    <button id="submit-button" class="w-fit text-center bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2 m-5 text-xl" type="submit">解答</button>
+    class="bg-gray-100 border border-gray-300 text-gray-900 text-3xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5 placeholder-gray-400">
+    <button id="submit-button" class="w-fit text-center bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2 m-5 text-3xl" type="submit">解答</button>
   </form>
 </div>
 
