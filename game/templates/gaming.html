@@ -24,16 +24,16 @@
 
 </script>
 
-<div class="text-5xl text-center font-bold text-black mb-3 mt-6">
+<div class="text-4xl text-center font-bold text-black mt-3">
   連想に役立った順に選択してください
 </div>
 
 <div class="flex items-center flex-col md:items-end">
-  <button onclick="clearCheckboxes()" class="bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2 m-2 right-2 text-3xl md:mr-16">選択解除</button>
+  <button onclick="clearCheckboxes()" class="bg-gradient-to-b from-blue-500 to-blue-400 hover:from-blue-400 hover:to-blue-300 text-white rounded-full px-4 py-2 right-2 text-2xl md:mr-16 shadow-xl">選択解除</button>
 </div>
 
 <!-- 5つの刺激語をcheckbox形式で羅列している -->
-<div class="flex flex-col items-center m-3 w-full md:grid md:gap-6 md:grid-cols-3">
+<div class="flex flex-col items-center m-3 w-full md:grid md:gap-4 md:grid-cols-3">
   <div class="m-3 w-96 md:w-full">
     <input id="stimulus-1" type="checkbox" value="stimulus-1" name="stimulus" class="hidden peer">
     <label id="label-stimulus-1" for="stimulus-1" name="label-stimulus" class="checkbox-label">
@@ -85,17 +85,17 @@
   </div>
 </div>
 
-<div class="mb-5 text-5xl font-bold text-black text-center mt-5">
+<div class="mb-5 text-4xl font-bold text-black text-center mt-5">
   {{ q_sentence }}
 </div>
 
-<div class="flex items-center flex-col mt-16">
+<div class="flex items-center flex-col mt-11">
   <form id="answer-form" name="answer-form" class="w-full flex flex-col items-center" method="POST">
     {% csrf_token %}
     <!-- {{ form.answer }} Django独自のform -->
     <input id="user-answer" type="text" name="user-answer" required="required" placeholder="解答を入力"
-    class="bg-gray-100 border border-gray-300 text-gray-900 text-3xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5 placeholder-gray-400">
-    <button id="submit-button" class="w-fit text-center bg-blue-400 hover:bg-blue-300 text-white rounded px-4 py-2 m-5 text-3xl" type="submit">解答</button>
+    class="bg-gray-100 border border-gray-300 text-gray-900 text-3xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5 placeholder-gray-400 shadow-xl">
+    <button id="submit-button" class="w-fit text-center bg-gradient-to-b from-blue-500 to-blue-400 hover:from-blue-400 hover:to-blue-300 text-white rounded-full px-4 py-2 m-3 text-3xl shadow-xl" type="submit">解答</button>
   </form>
 </div>
 
