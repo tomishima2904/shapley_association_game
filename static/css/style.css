@@ -11,6 +11,9 @@ Custimize styles using @apply
   @apply font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full bg-gradient-to-b from-blue-500 to-blue-400 hover:from-blue-400 hover:to-blue-300 shadow-xl;
 }
 
+.checkbox-wrapper {
+  @apply m-3 w-96 md:w-full
+}
 .custom-checkbox {
   @apply w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300;
   @apply focus:ring-blue-500 focus:ring-2;
@@ -28,7 +31,7 @@ Custimize styles using @apply
 }
 
 .checkbox-icon {
-  @apply ml-5;
+  @apply text-right;
 }
 
 .table-header {

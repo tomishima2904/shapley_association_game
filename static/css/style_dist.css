@@ -662,10 +662,6 @@ video {
   width: 100%;
 }
 
-.w-96{
-  width: 24rem;
-}
-
 .w-fit{
   width: -moz-fit-content;
   width: fit-content;
@@ -894,6 +890,17 @@ Custimize styles using @apply
   --tw-gradient-to: #93c5fd;
 }
 
+.checkbox-wrapper{
+  margin: 0.75rem;
+  width: 24rem;
+}
+
+@media (min-width: 768px){
+  .checkbox-wrapper{
+    width: 100%;
+  }
+}
+
 .custom-checkbox{
   height: 1rem;
   width: 1rem;
@@ -958,7 +965,7 @@ Custimize styles using @apply
 }
 
 .checkbox-icon{
-  margin-left: 1.25rem;
+  text-align: right;
 }
 
 .table-header{
@@ -1038,10 +1045,6 @@ Custimize styles using @apply
 
   .md\:grid{
     display: grid;
-  }
-
-  .md\:w-full{
-    width: 100%;
   }
 
   .md\:grid-cols-3{
