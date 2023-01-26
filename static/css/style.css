@@ -11,8 +11,8 @@ Custimize styles using @apply
   @apply font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full bg-gradient-to-b from-blue-500 to-blue-400 hover:from-blue-400 hover:to-blue-300 shadow-xl;
 }
 
-.checkbox-wrapper {
-  @apply m-3 w-96 md:w-full
+.checkbox-wrapper{
+  @apply m-3 w-96;
 }
 .custom-checkbox {
   @apply w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300;
@@ -21,17 +21,21 @@ Custimize styles using @apply
 
 .checkbox-label {
   @apply inline-flex items-center justify-between w-full max-w-sm p-5 border-2 rounded-full cursor-pointer shadow-xl;
-	@apply text-gray-500 bg-white border-gray-200;
+	@apply bg-white border-gray-200;
   @apply peer-checked:border-blue-600 peer-checked:text-gray-600;
   @apply hover:text-gray-600 hover:bg-gray-50;
 }
 
 .checkbox-label-content {
-	@apply w-full text-3xl font-kosugi font-bold;
+	@apply w-full text-3xl font-kosugi font-bold text-gray-500;
+}
+
+.checkbox-icon-checked {
+  @apply text-white bg-blue-400 rounded-full px-4 py-2;
 }
 
 .checkbox-icon {
-  @apply text-right;
+  @apply text-white bg-blue-400 rounded-full;
 }
 
 .table-header {

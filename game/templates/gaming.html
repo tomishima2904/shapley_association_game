@@ -28,59 +28,49 @@
   連想に役立った順に選択してください
 </div>
 
-<div class="flex items-center flex-col md:items-end">
-  <button onclick="clearCheckboxes()" class="btn-blue right-2 text-2xl md:mr-16">選択解除</button>
+<div class="flex items-center flex-col mt-3">
+  <button onclick="clearCheckboxes()" class="btn-blue right-2 text-2xl">選択解除</button>
 </div>
 
 <!-- 5つの刺激語をcheckbox形式で羅列している -->
-<div class="flex flex-col items-center m-3 w-full md:grid md:gap-4 md:grid-cols-3">
+<div class="flex flex-col items-center m-3 w-full">
   <div class="checkbox-wrapper">
     <input id="stimulus-1" type="checkbox" value="stimulus-1" name="stimulus" class="hidden peer">
     <label id="label-stimulus-1" for="stimulus-1" name="label-stimulus" class="checkbox-label">
-      <div class="flex justify-between">
-        <div class="checkbox-label-content">{{ stimuli.0 }}</div>
-        <div id="checkbox-icon-1" class="checkbox-icon"></div>
-      </div>
+      <div class="checkbox-label-content">{{ stimuli.0 }}</div>
+      <div id="checkbox-icon-1" class="checkbox-icon"></div>
     </label>
   </div>
 
   <div class="checkbox-wrapper">
     <input id="stimulus-2" type="checkbox" value="stimulus-2" name="stimulus" class="hidden peer">
     <label id="label-stimulus-2" for="stimulus-2" name="label-stimulus" class="checkbox-label">
-      <div class="flex justify-start">
-        <div class="checkbox-label-content">{{ stimuli.1 }}</div>
-        <div id="checkbox-icon-2" class="checkbox-icon"></div>
-      </div>
+      <div class="checkbox-label-content">{{ stimuli.1 }}</div>
+      <div id="checkbox-icon-2" class="checkbox-icon"></div>
     </label>
   </div>
 
   <div class="checkbox-wrapper">
     <input id="stimulus-3" type="checkbox" value="stimulus-3" name="stimulus" class="hidden peer">
     <label id="label-stimulus-3" for="stimulus-3" name="label-stimulus" class="checkbox-label">
-      <div class="flex justify-start">
-        <div class="checkbox-label-content">{{ stimuli.2 }}</div>
-        <div id="checkbox-icon-3" class="checkbox-icon"></div>
-      </div>
+      <div class="checkbox-label-content">{{ stimuli.2 }}</div>
+      <div id="checkbox-icon-3" class="checkbox-icon"></div>
     </label>
   </div>
 
   <div class="checkbox-wrapper">
     <input id="stimulus-4" type="checkbox" value="stimulus-4" name="stimulus" class="hidden peer">
     <label id="label-stimulus-4" for="stimulus-4" name="label-stimulus" class="checkbox-label">
-      <div class="flex justify-start">
-        <div class="checkbox-label-content">{{ stimuli.3 }}</div>
-        <div id="checkbox-icon-4" class="checkbox-icon"></div>
-      </div>
+      <div class="checkbox-label-content">{{ stimuli.3 }}</div>
+      <div id="checkbox-icon-4" class="checkbox-icon"></div>
     </label>
   </div>
 
   <div class="checkbox-wrapper">
     <input id="stimulus-5" type="checkbox" value="stimulus-5" name="stimulus" class="hidden peer">
     <label id="label-stimulus-5" for="stimulus-5" name="label-stimulus" class="checkbox-label">
-      <div class="flex justify-start">
-        <div class="checkbox-label-content">{{ stimuli.4 }}</div>
-        <div id="checkbox-icon-5" class="checkbox-icon"></div>
-      </div>
+      <div class="checkbox-label-content">{{ stimuli.4 }}</div>
+      <div id="checkbox-icon-5" class="checkbox-icon"></div>
     </label>
   </div>
 </div>
