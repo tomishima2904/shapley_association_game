@@ -622,6 +622,30 @@ video {
   margin-top: 8rem;
 }
 
+.ml-6{
+  margin-left: 1.5rem;
+}
+
+.ml-10{
+  margin-left: 2.5rem;
+}
+
+.ml-14{
+  margin-left: 3.5rem;
+}
+
+.ml-16{
+  margin-left: 4rem;
+}
+
+.ml-8{
+  margin-left: 2rem;
+}
+
+.ml-20{
+  margin-left: 5rem;
+}
+
 .block{
   display: block;
 }
@@ -671,12 +695,20 @@ video {
   min-width: 100%;
 }
 
+.flex-row{
+  flex-direction: row;
+}
+
 .flex-col{
   flex-direction: column;
 }
 
 .items-center{
   align-items: center;
+}
+
+.justify-center{
+  justify-content: center;
 }
 
 .justify-between{
