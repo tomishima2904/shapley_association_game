@@ -22,7 +22,7 @@ answer_form.addEventListener("submit", (e) => {
     const answer = document.getElementById("user-answer");
     const checkboxes = document.getElementsByName("stimulus");
     const checkbox_labels = document.querySelectorAll("div.checkbox-label-content");
-    const checkbox_icons = document.querySelectorAll("div.checkbox-icon");
+    const checkbox_icons = document.querySelectorAll("div.checkbox-icon-checked");
 
     // URLのクエリパラメータを管理
     const body = new URLSearchParams();

@@ -12,10 +12,15 @@
 
   function clearCheckboxes(event) {
     const checkboxes = document.getElementsByName("stimulus");
-    const checkbox_icons = document.querySelectorAll("div.checkbox-icon");
     for (let i = 0; i < checkboxes.length; i++) {
-      checkboxes[i].checked = false;
-      checkbox_icons[i].innerText = "";
+      // チェックされているボックスに対して、チェックを外し、クラス名を付け替えて、数字を除去する
+      if (checkboxes[i].checked){
+        checkboxes[i].checked = false;
+        var unchecked_checkbox_icon = document.getElementById("checkbox-icon-" + (i+1));
+        unchecked_checkbox_icon.classList.remove("checkbox-icon-checked");
+        unchecked_checkbox_icon.classList.add("checkbox-icon");
+        unchecked_checkbox_icon.innerText = "";
+      }
     }
     queue = [];
   }
