@@ -63,6 +63,8 @@ answer_form.addEventListener("submit", (e) => {
         for (let i = 0; i < NUM_STIM; i++) {
           checkbox_labels[i].innerText = response.stimuli[i];
           checkboxes[i].checked = false;
+          checkbox_icons[i].classList.remove("checkbox-icon-checked");
+          checkbox_icons[i].classList.add("checkbox-icon");
           checkbox_icons[i].innerText = "";
         }
         // ユーザーが答えなければいけない質問数を更新する
