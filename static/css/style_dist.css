@@ -515,40 +515,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.container{
-  width: 100%;
-}
-
-@media (min-width: 640px){
-  .container{
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px){
-  .container{
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px){
-  .container{
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px){
-  .container{
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px){
-  .container{
-    max-width: 1536px;
-  }
-}
-
 .static{
   position: static;
 }
@@ -563,11 +529,6 @@ video {
 
 .m-3{
   margin: 0.75rem;
-}
-
-.mx-auto{
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .my-3\.5{
@@ -598,8 +559,16 @@ video {
   margin-left: 0.75rem;
 }
 
+.mt-16{
+  margin-top: 4rem;
+}
+
 .mt-3{
   margin-top: 0.75rem;
+}
+
+.mr-3{
+  margin-right: 0.75rem;
 }
 
 .mb-5{
@@ -612,10 +581,6 @@ video {
 
 .ml-20{
   margin-left: 5rem;
-}
-
-.mt-16{
-  margin-top: 4rem;
 }
 
 .ml-10{
@@ -899,7 +864,7 @@ Custimize styles using @apply
   width: fit-content;
   border-radius: 9999px;
   --tw-bg-opacity: 1;
-  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+  background-color: rgb(163 163 163 / var(--tw-bg-opacity));
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1rem;
@@ -916,7 +881,7 @@ Custimize styles using @apply
 
 .btn-clear:hover{
   --tw-bg-opacity: 1;
-  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+  background-color: rgb(212 212 212 / var(--tw-bg-opacity));
 }
 
 .checkbox-wrapper{
@@ -995,6 +960,8 @@ Custimize styles using @apply
   padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }

@@ -12,7 +12,7 @@ Custimize styles using @apply
 }
 
 .btn-clear {
-  @apply font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full bg-gray-500 hover:bg-gray-400 shadow-xl;
+  @apply font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full bg-neutral-400 hover:bg-neutral-300 shadow-xl;
 }
 
 .checkbox-wrapper{
@@ -35,7 +35,7 @@ Custimize styles using @apply
 }
 
 .checkbox-icon-checked {
-  @apply text-white bg-blue-400 rounded-full px-4 py-2;
+  @apply text-white text-xl bg-blue-400 rounded-full px-4 py-2;
 }
 
 .checkbox-icon {
