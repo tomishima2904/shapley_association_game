@@ -8,11 +8,13 @@ Custimize styles using @apply
 */
 
 .btn-blue {
-  @apply font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full bg-gradient-to-b from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 shadow-xl shadow-blue-800/30;
+  @apply font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full;
+  @apply bg-gradient-to-b from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 shadow-xl shadow-sky-500/30;
 }
 
 .btn-clear {
-  @apply font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full bg-gradient-to-b from-neutral-300 to-neutral-400  hover:from-neutral-200 hover:to-neutral-300 shadow-xl shadow-neutral-500/30;
+  @apply font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full;
+  @apply bg-gradient-to-b from-neutral-300 to-neutral-400  hover:from-neutral-200 hover:to-neutral-300 shadow-xl shadow-neutral-500/30;
 }
 
 .checkbox-wrapper{
