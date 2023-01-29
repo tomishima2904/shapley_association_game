@@ -33,7 +33,7 @@
   連想に役立った順に選択してください
 </div>
 
-<div class="flex  flex-row justify-end mt-3">
+<div class="flex  flex-row justify-end mt-3 mr-3">
   <button onclick="clearCheckboxes()" class="btn-clear right-2 text-2xl mr-3">選択解除</button>
 </div>
 
@@ -89,7 +89,7 @@
   {% csrf_token %}
   <!-- {{ form.answer }} Django独自のform -->
   <input id="user-answer" type="text" name="user-answer" required="required" placeholder="解答を入力"
-  class="font-kosugi font-bold bg-gray-100 border border-gray-300 text-gray-900 text-3xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5 placeholder-gray-400 shadow-xl">
+  class=" bg-gray-100 border border-gray-300 text-gray-900 text-3xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5 placeholder-gray-400 ">
   <button id="submit-button" class="btn-blue ml-10 text-3xl" type="submit">解答</button>
 </form>
 
