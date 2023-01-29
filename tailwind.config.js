@@ -6,7 +6,11 @@ module.exports = {
     "./node_modules/flowbite/**/*.js"
 ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        kosugi: ["Kosugi Maru"],
+      }
+    },
   },
   plugins: [],
 }

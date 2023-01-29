@@ -7,7 +7,7 @@
   {% if user.is_authenticated %}
     <a href="{% url 'game:gaming' %}" class="text-5xl btn-blue">ゲームスタート</a>
   {% else %}
-    <a href="{% url 'account_login' %}" class="text-5xl bg-green-400 font-semibold text-white text-center w-fit py-2 px-4 rounded hover:bg-green-500">こちらからログイン</a><br>
+    <a href="{% url 'account_login' %}" class="text-5xl bg-green-400 font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full hover:bg-green-500">こちらからログイン</a><br>
   {% endif %}
 </div>
 {% endblock %}

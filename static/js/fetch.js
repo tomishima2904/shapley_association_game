@@ -22,7 +22,7 @@ answer_form.addEventListener("submit", (e) => {
     const answer = document.getElementById("user-answer");
     const checkboxes = document.getElementsByName("stimulus");
     const checkbox_labels = document.querySelectorAll("div.checkbox-label-content");
-    const checkbox_icons = document.querySelectorAll("div.checkbox-icon");
+    const checkbox_icons = document.querySelectorAll("div.checkbox-icon-checked");
 
     // URLのクエリパラメータを管理
     const body = new URLSearchParams();
@@ -63,6 +63,8 @@ answer_form.addEventListener("submit", (e) => {
         for (let i = 0; i < NUM_STIM; i++) {
           checkbox_labels[i].innerText = response.stimuli[i];
           checkboxes[i].checked = false;
+          checkbox_icons[i].classList.remove("checkbox-icon-checked");
+          checkbox_icons[i].classList.add("checkbox-icon");
           checkbox_icons[i].innerText = "";
         }
         // ユーザーが答えなければいけない質問数を更新する
