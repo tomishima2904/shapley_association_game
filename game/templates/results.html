@@ -4,7 +4,13 @@
 {% block title %}結果{% endblock %}
 
 {% block contents %}
-  <p class="text-green-600">{{ user.get_username }} さんの解答</p>
+  <div class="text-4xl text-center font-bold text-black mt-16 font-kosugi">
+    {{ user.get_username }} さんの解答
+  </div>
+
+  <div class="flex  flex-row justify-end mt-3">
+    <a href="{% url 'game:index' %}" class="btn-blue">タイトルへ戻る</a>
+  </div>
 
   <div class="flex flex-col">
     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -33,7 +39,4 @@
     </div>
   </div>
 
-  <div class="flex items-center flex-col mt-5">
-    <a href="{% url 'game:index' %}" class="btn-blue">タイトルへ戻る</a>
-  </div>
 {% endblock %}
