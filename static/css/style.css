@@ -8,11 +8,11 @@ Custimize styles using @apply
 */
 
 .btn-blue {
-  @apply font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full bg-gradient-to-b from-blue-500 to-blue-400 hover:from-blue-400 hover:to-blue-300 shadow-xl;
+  @apply font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full bg-gradient-to-b from-blue-400 to-blue-500 hover:from-blue-300 hover:to-blue-400 shadow-xl shadow-blue-800/30;
 }
 
 .btn-clear {
-  @apply font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full bg-neutral-400 hover:bg-neutral-300 shadow-xl;
+  @apply font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full bg-gradient-to-b from-neutral-300 to-neutral-400  hover:from-neutral-200 hover:to-neutral-300 shadow-xl shadow-neutral-500/30;
 }
 
 .checkbox-wrapper{
@@ -35,7 +35,7 @@ Custimize styles using @apply
 }
 
 .checkbox-icon-checked {
-  @apply text-white text-xl bg-blue-400 rounded-full px-4 py-2;
+  @apply text-white text-xl font-bold bg-blue-400 rounded-full px-4 py-2;
 }
 
 .checkbox-icon {
@@ -43,15 +43,15 @@ Custimize styles using @apply
 }
 
 .table-header {
-	@apply text-sm font-medium text-gray-900 px-6 py-4 text-left;
+	@apply text-lg font-medium text-gray-900 px-6 py-4 text-left font-kosugi;
 }
 
 .table-data-qid {
-	@apply px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900;
+	@apply px-6 py-4 whitespace-nowrap text-lg font-medium text-gray-900;
 }
 
 .table-data {
-	@apply text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap;
+	@apply text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap;
 }
 
 /*
