@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,7 +17,7 @@ Custimize styles using @apply
   @apply bg-gradient-to-b from-neutral-300 to-neutral-400  hover:from-neutral-200 hover:to-neutral-300 shadow-xl shadow-neutral-500/30;
 }
 
-.checkbox-wrapper{
+.checkbox-wrapper {
   @apply m-3 w-96;
 }
 .custom-checkbox {
@@ -33,7 +33,7 @@ Custimize styles using @apply
 }
 
 .checkbox-label-content {
-	@apply w-full text-3xl font-kosugi font-bold text-gray-500;
+  @apply w-full text-3xl font-kosugi font-bold text-gray-500;
 }
 
 .checkbox-icon-checked {
@@ -45,23 +45,15 @@ Custimize styles using @apply
 }
 
 .table-header {
-	@apply text-lg font-medium text-gray-900 px-6 py-4 text-left font-kosugi;
+  @apply text-lg font-medium text-gray-900 px-6 py-4 text-left font-kosugi;
 }
 
 .table-data-qid {
-	@apply px-6 py-4 whitespace-nowrap text-lg font-medium text-gray-900;
+  @apply px-6 py-4 whitespace-nowrap text-lg font-medium text-gray-900;
 }
 
 .table-data {
-	@apply text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap;
-}
-
-.stimuli-pos {
-  @apply grid gap-4 grid-cols-1 m-3;
-}
-
-.stimuli-pos-web {
-  @apply grid gap-4 grid-cols-3 m-3;
+  @apply text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap;
 }
 
 /*

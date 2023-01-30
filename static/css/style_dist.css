@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap");
 
 /*
 ! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com
@@ -519,20 +519,8 @@ video {
   position: static;
 }
 
-.fixed{
-  position: fixed;
-}
-
 .right-2{
   right: 0.5rem;
-}
-
-.top-0{
-  top: 0px;
-}
-
-.right-0{
-  right: 0px;
 }
 
 .m-3\.5{
@@ -541,10 +529,6 @@ video {
 
 .m-3{
   margin: 0.75rem;
-}
-
-.m-8{
-  margin: 2rem;
 }
 
 .my-3\.5{
@@ -651,20 +635,12 @@ video {
   height: 5rem;
 }
 
-.h-6{
-  height: 1.5rem;
-}
-
 .min-h-screen{
   min-height: 100vh;
 }
 
 .w-80{
   width: 20rem;
-}
-
-.w-6{
-  width: 1.5rem;
 }
 
 .w-full{
@@ -678,10 +654,6 @@ video {
 
 .min-w-full{
   min-width: 100%;
-}
-
-.grid-cols-3{
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .grid-cols-1{
@@ -698,10 +670,6 @@ video {
 
 .place-items-center{
   place-items: center;
-}
-
-.content-start{
-  align-content: flex-start;
 }
 
 .items-center{
@@ -732,12 +700,12 @@ video {
   overflow-x: auto;
 }
 
-.rounded-full{
-  border-radius: 9999px;
-}
-
 .rounded-lg{
   border-radius: 0.5rem;
+}
+
+.rounded-full{
+  border-radius: 9999px;
 }
 
 .border-2{
@@ -766,11 +734,6 @@ video {
   border-bottom-color: rgb(30 41 59 / var(--tw-border-opacity));
 }
 
-.bg-gray-700{
-  --tw-bg-opacity: 1;
-  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-}
-
 .bg-gray-100{
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
@@ -793,10 +756,6 @@ video {
 
 .to-neutral-300{
   --tw-gradient-to: #d4d4d4;
-}
-
-.p-3{
-  padding: 0.75rem;
 }
 
 .p-2\.5{
@@ -825,10 +784,6 @@ video {
   font-family: Kosugi Maru;
 }
 
-.font-mono{
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
-
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -842,11 +797,6 @@ video {
 .text-2xl{
   font-size: 1.5rem;
   line-height: 2rem;
-}
-
-.text-xs{
-  font-size: 0.75rem;
-  line-height: 1rem;
 }
 
 .text-3xl{
@@ -872,14 +822,14 @@ video {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
-.text-white{
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .text-gray-900{
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
+.text-white{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .placeholder-gray-400::-moz-placeholder{
@@ -1091,20 +1041,6 @@ Custimize styles using @apply
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 
-.stimuli-pos{
-  margin: 0.75rem;
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.stimuli-pos-web{
-  margin: 0.75rem;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-}
-
 /*
 @apply ml-2 text-sm font-medium text-gray-900 dark:text-gray-300
 */
@@ -1130,41 +1066,9 @@ Custimize styles using @apply
     margin-right: -1.5rem;
   }
 
-  .sm\:block{
-    display: block;
-  }
-
-  .sm\:hidden{
-    display: none;
-  }
-
-  .sm\:bg-pink-500{
-    --tw-bg-opacity: 1;
-    background-color: rgb(236 72 153 / var(--tw-bg-opacity));
-  }
-
   .sm\:px-6{
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-  }
-}
-
-@media (min-width: 768px){
-  .md\:block{
-    display: block;
-  }
-
-  .md\:hidden{
-    display: none;
-  }
-
-  .md\:grid-cols-3{
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .md\:bg-orange-500{
-    --tw-bg-opacity: 1;
-    background-color: rgb(249 115 22 / var(--tw-bg-opacity));
   }
 }
 
@@ -1174,40 +1078,12 @@ Custimize styles using @apply
     margin-right: -2rem;
   }
 
-  .lg\:block{
-    display: block;
-  }
-
-  .lg\:hidden{
-    display: none;
-  }
-
   .lg\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .lg\:bg-green-500{
-    --tw-bg-opacity: 1;
-    background-color: rgb(34 197 94 / var(--tw-bg-opacity));
   }
 
   .lg\:px-8{
     padding-left: 2rem;
     padding-right: 2rem;
-  }
-}
-
-@media (min-width: 1280px){
-  .xl\:block{
-    display: block;
-  }
-
-  .xl\:hidden{
-    display: none;
-  }
-
-  .xl\:bg-blue-500{
-    --tw-bg-opacity: 1;
-    background-color: rgb(59 130 246 / var(--tw-bg-opacity));
   }
 }
