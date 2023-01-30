@@ -1078,6 +1078,14 @@ Custimize styles using @apply
     margin-right: -2rem;
   }
 
+  .lg\:mt-12{
+    margin-top: 3rem;
+  }
+
+  .lg\:mt-8{
+    margin-top: 2rem;
+  }
+
   .lg\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
