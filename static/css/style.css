@@ -56,6 +56,14 @@ Custimize styles using @apply
 	@apply text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap;
 }
 
+.stimuli-pos {
+  @apply grid gap-4 grid-cols-1 m-3;
+}
+
+.stimuli-pos-web {
+  @apply grid gap-4 grid-cols-3 m-3;
+}
+
 /*
 @apply ml-2 text-sm font-medium text-gray-900 dark:text-gray-300
 */
