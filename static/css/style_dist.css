@@ -652,6 +652,10 @@ video {
   width: fit-content;
 }
 
+.w-1\/2{
+  width: 50%;
+}
+
 .min-w-full{
   min-width: 100%;
 }
@@ -744,6 +748,16 @@ video {
   background-color: rgb(74 222 128 / var(--tw-bg-opacity));
 }
 
+.bg-gray-300{
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+
+.bg-gray-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+
 .bg-gradient-to-b{
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }
@@ -764,6 +778,10 @@ video {
 
 .p-2{
   padding: 0.5rem;
+}
+
+.p-4{
+  padding: 1rem;
 }
 
 .py-2{
@@ -1076,10 +1094,6 @@ Custimize styles using @apply
   .lg\:-mx-8{
     margin-left: -2rem;
     margin-right: -2rem;
-  }
-
-  .lg\:mt-12{
-    margin-top: 3rem;
   }
 
   .lg\:mt-8{
