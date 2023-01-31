@@ -37,13 +37,13 @@ class Command(BaseCommand):
             for result in results:
                 writer.writerow([
                     str(result.id),
+                    str(result.user_id),
                     str(result.datetime),
                     result.session_id,
                     str(result.qid),
                     result.user_answer,
                     result.q_order,
                     result.u_order,
-                    str(result.user_id)
                 ])
 
             # 保存ディレクトリのファイルリストを取得
