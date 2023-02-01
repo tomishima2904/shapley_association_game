@@ -739,11 +739,6 @@ video {
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
-.bg-green-400{
-  --tw-bg-opacity: 1;
-  background-color: rgb(74 222 128 / var(--tw-bg-opacity));
-}
-
 .bg-gradient-to-b{
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }
@@ -850,12 +845,6 @@ video {
 .placeholder-gray-400::placeholder{
   --tw-placeholder-opacity: 1;
   color: rgb(156 163 175 / var(--tw-placeholder-opacity));
-}
-
-.shadow-lg{
-  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .shadow-xl{
@@ -1009,10 +998,10 @@ Custimize styles using @apply
   border-radius: 9999px;
   --tw-bg-opacity: 1;
   background-color: rgb(56 189 248 / var(--tw-bg-opacity));
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-left: 0.875rem;
+  padding-right: 0.875rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 700;
@@ -1072,25 +1061,10 @@ Custimize styles using @apply
 @apply ml-2 text-sm font-medium text-gray-900 dark:text-gray-300
 */
 
-.hover\:bg-green-500:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
-}
-
-.hover\:from-green-500:hover{
-  --tw-gradient-from: #22c55e;
-  --tw-gradient-to: rgb(34 197 94 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
 .hover\:from-green-300:hover{
   --tw-gradient-from: #86efac;
   --tw-gradient-to: rgb(134 239 172 / 0);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
-.hover\:to-green-600:hover{
-  --tw-gradient-to: #16a34a;
 }
 
 .hover\:to-green-400:hover{
