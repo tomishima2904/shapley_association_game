@@ -38,7 +38,7 @@ class Command(BaseCommand):
                 writer.writerow([
                     str(result.id),
                     str(result.user_id),
-                    str(result.datetime),
+                    str(result.time_ms),
                     result.session_id,
                     str(result.qid),
                     result.user_answer,
