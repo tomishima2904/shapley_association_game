@@ -57,7 +57,8 @@ class GamingView(generic.TemplateView):
 
             #　ユーザーのゲーム履歴がDB上にない or 最後のセッションですべての質問を解答し終えている場合、新たにゲームを始める
             if UserAnswers.objects.filter(user=request.user).exists() == False or \
-                UserAnswers.objects.filter(user=request.user).latest('id').user_answer != None:
+                (UserAnswers.objects.filter(user=request.user).latest('id').user_answer != None and \
+                UserAnswers.objects.filter(user=request.user).latest('id').qid == QUESTIONS_NUM):
 
                 # ゲームの回を識別するための識別IDを作成
                 start_datetime = localtime(timezone.now())  # 開始の日付時刻を記憶
