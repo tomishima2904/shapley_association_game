@@ -27,7 +27,7 @@ class Words(models.Model):
 
 class UserAnswers(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.PROTECT)
-    datetime = models.DateTimeField(help_text="日付と時刻")
+    time_ms = models.IntegerField(null=True, help_text="解答にかかった時間 (ms)")
     session_id = models.CharField(max_length=14, help_text="同ユーザーの異なる回のゲームを区別するためのID", null=False)
     qid = models.IntegerField(blank=True, null=True, help_text="質問のID", default=0)
     user_answer = models.CharField(max_length=20, blank=True, null=True, help_text="ユーザーの回答")
