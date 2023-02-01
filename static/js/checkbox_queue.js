@@ -27,6 +27,8 @@ function handleCheckboxChange(event) {
 
     // チェックが外されたチェックボックスの表示番号を削除
     var unchecked_checkbox_icon = document.getElementById("checkbox-icon-" + changed_checkbox_id);
+    unchecked_checkbox_icon.classList.remove("checkbox-icon-checked");
+    unchecked_checkbox_icon.classList.add("checkbox-icon");
     unchecked_checkbox_icon.innerText = "";
 
     // 全てのチェック済みチェックボックスの表示番号を付け替える
@@ -42,6 +44,8 @@ function handleCheckboxChange(event) {
     queue.push(changed_checkbox_id);
     // 今チェックされたチェックボックスに表示番号を付ける
     var checkbox_icon = document.getElementById("checkbox-icon-" + changed_checkbox_id);
+    checkbox_icon.classList.remove("checkbox-icon");
+    checkbox_icon.classList.add("checkbox-icon-checked");
     checkbox_icon.innerText = queue.indexOf(changed_checkbox_id) + 1;
   }
   console.log(queue);

@@ -22,7 +22,7 @@ answer_form.addEventListener("submit", (e) => {
     const answer = document.getElementById("user-answer");
     const checkboxes = document.getElementsByName("stimulus");
     const checkbox_labels = document.querySelectorAll("div.checkbox-label-content");
-    const checkbox_icons = document.querySelectorAll("div.checkbox-icon");
+    const checkbox_icons = document.querySelectorAll("div.checkbox-icon-checked");
 
     // URLのクエリパラメータを管理
     const body = new URLSearchParams();
@@ -31,6 +31,8 @@ answer_form.addEventListener("submit", (e) => {
     console.log("ユーザーが選択した刺激語の順序は " + u_order + " です");
     body.append("u-order", u_order); // ユーザーが選択した刺激語の順序
     body.append("left-questions", left_questions);
+    var endTime = new Date();
+    body.append("time", endTime - startTime);
 
     // fetch API の登場! リロードしなくても画面の一部を更新できるようになる
     fetch("", {
@@ -49,7 +51,10 @@ answer_form.addEventListener("submit", (e) => {
       })
       // 残りの質問が0かどうかを判定し、0なら結果画面へ遷移
       .then((response) => {
-        if (response.left_questions == 0) window.location.href = url_results;
+        if (response.left_questions == 0) {
+          window.onbeforeunload = null;
+          window.location.href = url_results;
+        }
         return response;
       })
       // 0ではないので次の問題を用意
@@ -60,6 +65,8 @@ answer_form.addEventListener("submit", (e) => {
         for (let i = 0; i < NUM_STIM; i++) {
           checkbox_labels[i].innerText = response.stimuli[i];
           checkboxes[i].checked = false;
+          checkbox_icons[i].classList.remove("checkbox-icon-checked");
+          checkbox_icons[i].classList.add("checkbox-icon");
           checkbox_icons[i].innerText = "";
         }
         // ユーザーが答えなければいけない質問数を更新する
