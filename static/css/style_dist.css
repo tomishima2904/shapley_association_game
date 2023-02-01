@@ -652,10 +652,6 @@ video {
   width: fit-content;
 }
 
-.w-1\/2{
-  width: 50%;
-}
-
 .min-w-full{
   min-width: 100%;
 }
@@ -743,21 +739,6 @@ video {
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
-.bg-green-400{
-  --tw-bg-opacity: 1;
-  background-color: rgb(74 222 128 / var(--tw-bg-opacity));
-}
-
-.bg-gray-300{
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
-}
-
-.bg-gray-400{
-  --tw-bg-opacity: 1;
-  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
-}
-
 .bg-gradient-to-b{
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }
@@ -768,8 +749,18 @@ video {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.from-green-400{
+  --tw-gradient-from: #4ade80;
+  --tw-gradient-to: rgb(74 222 128 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
 .to-neutral-300{
   --tw-gradient-to: #d4d4d4;
+}
+
+.to-green-500{
+  --tw-gradient-to: #22c55e;
 }
 
 .p-2\.5{
@@ -778,10 +769,6 @@ video {
 
 .p-2{
   padding: 0.5rem;
-}
-
-.p-4{
-  padding: 1rem;
 }
 
 .py-2{
@@ -858,6 +845,17 @@ video {
 .placeholder-gray-400::placeholder{
   --tw-placeholder-opacity: 1;
   color: rgb(156 163 175 / var(--tw-placeholder-opacity));
+}
+
+.shadow-xl{
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-green-700\/50{
+  --tw-shadow-color: rgb(21 128 61 / 0.5);
+  --tw-shadow: var(--tw-shadow-colored);
 }
 
 /*
@@ -1000,10 +998,10 @@ Custimize styles using @apply
   border-radius: 9999px;
   --tw-bg-opacity: 1;
   background-color: rgb(56 189 248 / var(--tw-bg-opacity));
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-left: 0.875rem;
+  padding-right: 0.875rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 700;
@@ -1063,9 +1061,14 @@ Custimize styles using @apply
 @apply ml-2 text-sm font-medium text-gray-900 dark:text-gray-300
 */
 
-.hover\:bg-green-500:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+.hover\:from-green-300:hover{
+  --tw-gradient-from: #86efac;
+  --tw-gradient-to: rgb(134 239 172 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.hover\:to-green-400:hover{
+  --tw-gradient-to: #4ade80;
 }
 
 .focus\:border-sky-500:focus{

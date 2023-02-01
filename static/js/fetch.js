@@ -69,6 +69,7 @@ answer_form.addEventListener("submit", (e) => {
           checkbox_icons[i].classList.add("checkbox-icon");
           checkbox_icons[i].innerText = "";
         }
+        document.getElementById("q-sentence").innerText = response.q_sentence;
         // ユーザーが答えなければいけない質問数を更新する
         left_questions = response.left_questions;
         // ユーザーが選択した刺激語の順序を記憶する配列もクリアに
