@@ -31,6 +31,8 @@ answer_form.addEventListener("submit", (e) => {
     console.log("ユーザーが選択した刺激語の順序は " + u_order + " です");
     body.append("u-order", u_order); // ユーザーが選択した刺激語の順序
     body.append("left-questions", left_questions);
+    var endTime = new Date();
+    body.append("time", endTime - startTime);
 
     // fetch API の登場! リロードしなくても画面の一部を更新できるようになる
     fetch("", {

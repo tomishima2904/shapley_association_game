@@ -69,7 +69,6 @@ class GamingView(generic.TemplateView):
                 # データベースに最初の質問IDを登録
                 UserAnswers.objects.create(
                     user=request.user,
-                    datetime=start_datetime,
                     session_id=request.session['session_id'],
                     qid=qid,
                     q_order = ''.join(STR_STIMULI_ORDER)  # ユーザーに提示する刺激語の順序
@@ -103,6 +102,8 @@ class GamingView(generic.TemplateView):
         context = {}
         results = UserAnswers.objects.filter(user=request.user).last()  # テーブルの最後のクエリを抽出
 
+        results.time_ms = request.POST.get('time')  # 解答にかかった時間
+
         # fetchで送信されるユーザーの解答をモデルに保存
         user_answer = request.POST.get('user-answer')  # 解答フォームから解答を受け取る
         # print(f"'{user_answer}'と解答されました")
@@ -133,7 +134,6 @@ class GamingView(generic.TemplateView):
             # 次の質問を作る
             UserAnswers.objects.create(
                 user=request.user,
-                datetime=localtime(timezone.now()),
                 session_id=request.session['session_id'],
                 qid=qid,
                 q_order = ''.join(STR_STIMULI_ORDER)  # ユーザーに提示する刺激語の順序
