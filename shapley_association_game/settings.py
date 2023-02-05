@@ -1,6 +1,25 @@
 from .settings_common import *
 
 
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'game.apps.GameConfig',
+    'accounts.apps.AccountsConfig',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'django_ses',
+]
+
 # 本番運用環境用にセキュリティキーを生成し環境変数から読み込む
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
