@@ -164,13 +164,13 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',  # ユーザー名認証
 )
 
-# メールアドレス認証にする場合
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUT_USERNAME_REQUIRED = False
+# メールアドレス認証にする場合（SESの関係上ユーザー名での認証にする）
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUT_USERNAME_REQUIRED = True
 
-# サインアップにメールアドレス確認を挟むよう設定
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_EMAIL_REQUIRED = True
+# サインアップにメールアドレス確認を挟むよう設定（SESの関係上しないことにした）
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_REQUIRED = False
 
 # ログイン/ログアウト後の遷移先を設定
 LOGIN_REDIRECT_URL = 'game:index'
