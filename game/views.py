@@ -58,7 +58,7 @@ class GamingView(generic.TemplateView):
             #　ユーザーのゲーム履歴がDB上にない or 最後のセッションですべての質問を解答し終えている場合、新たにゲームを始める
             if UserAnswers.objects.filter(user=request.user).exists() == False or \
                 (UserAnswers.objects.filter(user=request.user).latest('id').user_answer != None and \
-                UserAnswers.objects.filter(user=request.user).latest('id').qid == QUESTIONS_NUM):
+                UserAnswers.objects.filter(user=request.user).latest('id').qid >= QUESTIONS_NUM):
 
                 # ゲームの回を識別するための識別IDを作成
                 start_datetime = localtime(timezone.now())  # 開始の日付時刻を記憶
@@ -121,7 +121,7 @@ class GamingView(generic.TemplateView):
         context['left_questions'] = left_questions  # ユーザーが答えなければいけない質問の残数
 
         # 質問がなくなった場合
-        if left_questions == 0:
+        if left_questions <= 0:
             print("ゲーム終了！")
             # return redirect('/results/')  # 本当はこのようにサーバー側で遷移させたかったがうまくいかんのでjsで制御
             request.session['status'] = 1  # ゲーム中ではないので 2^1(2) を減算
