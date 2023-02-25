@@ -65,3 +65,5 @@ LOGGING = {
     }
 }
 
+# CSRFの設定を特定のドメインに行う
+CSRF_TRUSTED_ORIGINS = [f'https://{ALLOWED_HOSTS[-1]}']
