@@ -28,7 +28,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = False
 
 # 許可するホスト名のリスト
-ALLOWED_HOSTS = [os.environ['ALLOWED_HOSTS']]
+ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(',')
 
 # 静的ファイルを配置する場所
 STATIC_ROOT = '/usr/share/nginx/html/static'
