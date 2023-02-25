@@ -10,10 +10,11 @@ import random
 import copy
 import json
 from typing import List, Tuple, Dict, Any, Union
+import os
 
 
 STIMULI_NUM = 5  # 刺激語の数
-QUESTIONS_NUM = 2  # 本当は 87 だが開発用に 2
+QUESTIONS_NUM = int(os.environ["QUESTION_NUM"])  # 本当は 87 だが開発用に 2
 STIMULI_HEADER = [f"stimulus_{i+1}" for i in range(STIMULI_NUM)]  # DB中から刺激語を探す時に使う用のヘッダー
 STR_STIMULI_ORDER = [str(order+1) for order in range(STIMULI_NUM)]  # DBに保存する用の刺激語の提示順を表した文字列
 
