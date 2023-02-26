@@ -6,3 +6,8 @@ numpy
 matplotlib
 environ
 pandas
+django-allauth
+markdown
+django-filter
+djangorestframework
+django-bootstrap5

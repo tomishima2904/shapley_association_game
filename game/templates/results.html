@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}shassociate: 連想ゲーム 結果{% endblock %}
+
+{% block contents %}
+  <div class="text-4xl text-center font-bold text-black mt-8 font-kosugi uppercase">
+    {{ user.get_username }} さんの解答
+  </div>
+
+  <div class="flex  flex-row justify-end mr-6">
+    <a href="{% url 'game:index' %}" class="btn-blue">タイトルへ戻る</a>
+  </div>
+
+  <div class="flex flex-col">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="overflow-hidden">
+          <table class="min-w-full">
+            <thead class="border-b">
+              <tr>
+                <th scope="col" class="table-header">ID</th>
+                <th scope="col" class="table-header">質問</th>
+                <th scope="col" class="table-header">解答</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for result in results %}
+              <tr class="bg-gray-100 border-b">
+                <td class="table-data-qid">{{ result.qid }}</td>
+                <td class="table-data">{{ result.q_sentence }}</td>
+                <td class="table-data">{{ result.user_answer }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

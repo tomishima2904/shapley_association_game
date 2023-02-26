@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>トップページ</title>
-</head>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}shassociate: 連想ゲーム スタート画面{% endblock%}
 
-<body>
-    hello world
-<body
-</html>
+{% block contents %}
+<div class="flex items-center flex-col mt-32">
+  {% if user.is_authenticated %}
+    <a href="{% url 'game:gaming' %}" class="text-5xl btn-blue">ゲームスタート</a>
+  {% else %}
+    <a href="{% url 'account_login' %}" class="text-5xl bg-gradient-to-b from-green-400 to-green-500 font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full hover:from-green-300 hover:to-green-400 shadow-xl shadow-green-700/50">こちらからログイン</a><br>
+  {% endif %}
+</div>
+{% endblock %}

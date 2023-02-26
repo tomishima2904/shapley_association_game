@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+Custimize styles using @apply
+*/
+
+.btn-blue {
+  @apply font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full;
+  @apply bg-gradient-to-b from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 shadow-xl shadow-sky-500/30;
+}
+
+.btn-clear {
+  @apply font-kosugi font-bold text-white text-center w-fit py-2 px-4 rounded-full;
+  @apply bg-gradient-to-b from-neutral-300 to-neutral-400  hover:from-neutral-200 hover:to-neutral-300 shadow-xl shadow-neutral-500/30;
+}
+
+.checkbox-wrapper {
+  @apply m-3 w-96;
+}
+.custom-checkbox {
+  @apply w-4 h-4 text-sky-600 bg-gray-100 rounded border-gray-300;
+  @apply focus:ring-sky-500 focus:ring-2;
+}
+
+.checkbox-label {
+  @apply inline-flex items-center justify-between w-full max-w-sm p-5 border-2 rounded-full cursor-pointer shadow-xl;
+  @apply bg-white border-gray-200;
+  @apply peer-checked:border-sky-600 peer-checked:text-gray-600;
+  @apply hover:text-gray-600 hover:bg-gray-50;
+}
+
+.checkbox-label-content {
+  @apply w-full text-3xl font-kosugi font-bold text-gray-500;
+}
+
+.checkbox-icon-checked {
+  @apply text-white text-xl font-bold bg-sky-400 rounded-full px-3.5 py-1;
+}
+
+.checkbox-icon {
+  @apply text-white bg-sky-400 rounded-full;
+}
+
+.table-header {
+  @apply text-lg font-medium text-gray-900 px-6 py-4 text-left font-kosugi;
+}
+
+.table-data-qid {
+  @apply px-6 py-4 whitespace-nowrap text-lg font-medium text-gray-900;
+}
+
+.table-data {
+  @apply text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap;
+}
+
+/*
+@apply ml-2 text-sm font-medium text-gray-900 dark:text-gray-300
+*/
