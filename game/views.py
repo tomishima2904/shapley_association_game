@@ -18,9 +18,8 @@ from shapley_association_game.settings_common import env
 STIMULI_NUM = 5  # 刺激語の数
 QUESTIONS_NUM = int(env('QUESTIONS_NUM'))  # 総質問数
 ORDER_TYPE = env('ORDER_TYPE')  # 刺激語の提示順のタイプ ('fully_random', 'personally_fixed', 'fixed')
-
-STIMULI_HEADER = [f"stimulus_{i+1}" for i in range(STIMULI_NUM)]  # DB中から刺激語を探す時に使う用のヘッダー
-STR_STIMULI_ORDER = [str(order+1) for order in range(STIMULI_NUM)]  # DBに保存する用の刺激語の提示順を表した文字列
+print(f"order type: {ORDER_TYPE}, number of questions: {QUESTIONS_NUM}")
+STIMULI_ORDER = [str(order+1) for order in range(STIMULI_NUM)]  # DBに保存する用の刺激語の提示順を表した文字列
 
 # 質問のカテゴリに応じた質問文の辞書
 with open ("data/input_sentences.json", encoding='utf-8') as f:
@@ -46,6 +45,8 @@ class GamingView(generic.TemplateView):
     # gaming.htmlに遷移されたら行われるGETメソッド
     def get(self, request, *args, **kwargs):
 
+        global STIMULI_ORDER
+
         # ログインしていない場合タイトル画面へリダイレクト
         if (not request.user.is_authenticated) or (not 'status' in request.session):
             return redirect('/')
@@ -70,12 +71,15 @@ class GamingView(generic.TemplateView):
                 left_questions = QUESTIONS_NUM
                 qid = QUESTIONS_NUM - left_questions + 1  # ユーザーが答える質問のID
 
+                if ORDER_TYPE == "fully_random":
+                    random.shuffle(STIMULI_ORDER)  # 刺激語提示順をシャッフル
+
                 # データベースに最初の質問IDを登録
                 UserAnswers.objects.create(
                     user=request.user,
                     session_id=request.session['session_id'],
                     qid=qid,
-                    q_order = ''.join(STR_STIMULI_ORDER)  # ユーザーに提示する刺激語の順序
+                    q_order = ''.join(STIMULI_ORDER)  # ユーザーに提示する刺激語の順序
                 )
 
             # 前回のセッションでユーザーが途中の質問までしか解答してない場合、途中の質問から答える
@@ -84,6 +88,10 @@ class GamingView(generic.TemplateView):
                 request.session['session_id'] = latest_row.session_id
                 qid = latest_row.qid
                 left_questions = QUESTIONS_NUM - qid + 1
+                if ORDER_TYPE != "fixed":
+                    STIMULI_ORDER = list(latest_row.q_order)
+
+            stimuli_header = [f"stimulus_{i}" for i in STIMULI_ORDER]  # DB中から刺激語を探す時に使う用のヘッダー
 
         # ゲーム中に誤ってリロード等して再度GamingViewが実行された場合
         else:
@@ -92,7 +100,7 @@ class GamingView(generic.TemplateView):
 
         context['left_questions'] = left_questions  # ユーザーが答えなければいけない質問の残数
         context['stimuli']: List = [
-            list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in STIMULI_HEADER
+            list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in stimuli_header
         ]
         q_sentence = Q_SENTENCES[Words.objects.filter(qid=qid).values('category')[0]['category']]  # qidのカテゴリに応じた質問文を用意
         context['q_sentence'] = q_sentence[-1]  # ユーザーに提示する質問文
@@ -105,6 +113,7 @@ class GamingView(generic.TemplateView):
 
         context = {}
         results = UserAnswers.objects.filter(user=request.user).last()  # テーブルの最後のクエリを抽出
+        global STIMULI_ORDER
 
         results.time_ms = request.POST.get('time')  # 解答にかかった時間
 
@@ -135,19 +144,24 @@ class GamingView(generic.TemplateView):
             # print(f"残り{left_questions}問です")
             qid = QUESTIONS_NUM - left_questions + 1  # ユーザーが答える質問のID
 
+            if ORDER_TYPE == "fully_random":
+                random.shuffle(STIMULI_ORDER)  # 刺激語提示順をシャッフル
+
+            stimuli_header = [f"stimulus_{i}" for i in STIMULI_ORDER]  # DB中から刺激語を探す時に使う用のヘッダー
+
             # 次の質問を作る
             UserAnswers.objects.create(
                 user=request.user,
                 session_id=request.session['session_id'],
                 qid=qid,
-                q_order = ''.join(STR_STIMULI_ORDER)  # ユーザーに提示する刺激語の順序
+                q_order = ''.join(STIMULI_ORDER)  # ユーザーに提示する刺激語の順序
             )
 
             # context['stimuli']: Dict = {
             #     header: list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in STIMULI_HEADER
             # }  # qidに該当する刺激後を抽出する
             context['stimuli']: List = [
-                list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in STIMULI_HEADER
+                list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in stimuli_header
             ]
             q_sentence = Q_SENTENCES[Words.objects.filter(qid=qid).values('category')[0]['category']]  # qidのカテゴリに応じた質問文を用意
             context['q_sentence'] = q_sentence[-1]  # ユーザーに提示する質問文
@@ -168,13 +182,14 @@ class ResultsView(generic.TemplateView):
         request.session['status'] = 1  # ゲーム中ではないので 2^1(2) を減算
         context = {}
         context["results"] = list(
-            UserAnswers.objects.filter(user=request.user, session_id=request.session['session_id']).values('qid', 'user_answer')
+            UserAnswers.objects.filter(user=request.user, session_id=request.session['session_id']).values('qid', 'user_answer', 'q_order')
         )  # ログインユーザーの今回の結果をモデルから取得しリストにする
 
         # ユーザーに提示した質問文を作成
         for result in context["results"]:
+            stimuli_header = [f"stimulus_{i}" for i in list(result["q_order"])]
             stimuli = [
-                list(Words.objects.filter(qid=result["qid"]).values_list(header, flat=True))[0] for header in STIMULI_HEADER
+                list(Words.objects.filter(qid=result["qid"]).values_list(header, flat=True))[0] for header in stimuli_header
             ]  # qid（queston id）に対応する刺激語を取得
             q_sentence = Q_SENTENCES[Words.objects.filter(qid=result["qid"]).values('category')[0]['category']]  # qidに対応する質問文を取得
             q_sentence = "、".join(stimuli) + q_sentence[-1]  # 刺激語と質問文を連結
