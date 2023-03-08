@@ -14,8 +14,9 @@ import os
 
 from shapley_association_game.settings_common import env
 
+
 STIMULI_NUM = 5  # 刺激語の数
-QUESTIONS_NUM = env('QUESTIONS_NUM')  # 総質問数
+QUESTIONS_NUM = int(env('QUESTIONS_NUM'))  # 総質問数
 ORDER_TYPE = env('ORDER_TYPE')  # 刺激語の提示順のタイプ ('fully_random', 'personally_fixed', 'fixed')
 
 STIMULI_HEADER = [f"stimulus_{i+1}" for i in range(STIMULI_NUM)]  # DB中から刺激語を探す時に使う用のヘッダー
