@@ -12,13 +12,14 @@ import json
 from typing import List, Tuple, Dict, Any, Union
 import os
 
+from shapley_association_game.settings_common import env
 
 STIMULI_NUM = 5  # 刺激語の数
-QUESTIONS_NUM = int(os.environ["QUESTION_NUM"])  # 本当は 87 だが開発用に 2
+QUESTIONS_NUM = env('QUESTIONS_NUM')  # 総質問数
+ORDER_TYPE = env('ORDER_TYPE')  # 刺激語の提示順のタイプ ('fully_random', 'personally_fixed', 'fixed')
+
 STIMULI_HEADER = [f"stimulus_{i+1}" for i in range(STIMULI_NUM)]  # DB中から刺激語を探す時に使う用のヘッダー
 STR_STIMULI_ORDER = [str(order+1) for order in range(STIMULI_NUM)]  # DBに保存する用の刺激語の提示順を表した文字列
-
-RAMDOM_ORDER = False  # False ならばDBに載っている刺激語の順に提示（現在は実装予定無し）
 
 # 質問のカテゴリに応じた質問文の辞書
 with open ("data/input_sentences.json", encoding='utf-8') as f:
