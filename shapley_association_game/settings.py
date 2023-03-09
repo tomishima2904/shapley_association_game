@@ -21,14 +21,14 @@ INSTALLED_APPS = [
 ]
 
 # 本番運用環境用にセキュリティキーを生成し環境変数から読み込む
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = env('SECRET_KEY')
 
 
 # 本番運用では必ずFalse
 DEBUG = False
 
 # 許可するホスト名のリスト
-ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(',')
+ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
 
 # 静的ファイルを配置する場所
 STATIC_ROOT = '/usr/share/nginx/html/static'
