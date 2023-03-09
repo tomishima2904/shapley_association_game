@@ -33,11 +33,11 @@ Custimize styles using @apply
 }
 
 .checkbox-label-content {
-  @apply w-full text-3xl font-kosugi font-bold text-gray-500;
+  @apply w-full text-lg font-kosugi font-bold text-gray-500;
 }
 
 .checkbox-icon-checked {
-  @apply text-white text-xl font-bold bg-sky-400 rounded-full px-3.5 py-1;
+  @apply text-white text-lg font-bold bg-sky-400 rounded-full px-3.5 py-1;
 }
 
 .checkbox-icon {

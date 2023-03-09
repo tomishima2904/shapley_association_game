@@ -531,6 +531,10 @@ video {
   margin: 0.75rem;
 }
 
+.m-1{
+  margin: 0.25rem;
+}
+
 .my-3\.5{
   margin-top: 0.875rem;
   margin-bottom: 0.875rem;
@@ -563,12 +567,8 @@ video {
   margin-top: 2rem;
 }
 
-.mt-16{
-  margin-top: 4rem;
-}
-
-.mt-3{
-  margin-top: 0.75rem;
+.mt-5{
+  margin-top: 1.25rem;
 }
 
 .mr-3{
@@ -577,10 +577,6 @@ video {
 
 .mb-5{
   margin-bottom: 1.25rem;
-}
-
-.mt-5{
-  margin-top: 1.25rem;
 }
 
 .ml-20{
@@ -688,10 +684,6 @@ video {
   justify-content: space-between;
 }
 
-.gap-4{
-  gap: 1rem;
-}
-
 .overflow-hidden{
   overflow: hidden;
 }
@@ -794,16 +786,6 @@ video {
   line-height: 1.75rem;
 }
 
-.text-4xl{
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
-.text-2xl{
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
 .text-3xl{
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -812,6 +794,11 @@ video {
 .text-5xl{
   font-size: 3rem;
   line-height: 1;
+}
+
+.text-4xl{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .font-bold{
@@ -987,8 +974,8 @@ Custimize styles using @apply
 .checkbox-label-content{
   width: 100%;
   font-family: Kosugi Maru;
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
   font-weight: 700;
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -1002,7 +989,7 @@ Custimize styles using @apply
   padding-right: 0.875rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   line-height: 1.75rem;
   font-weight: 700;
   --tw-text-opacity: 1;
@@ -1097,14 +1084,6 @@ Custimize styles using @apply
   .lg\:-mx-8{
     margin-left: -2rem;
     margin-right: -2rem;
-  }
-
-  .lg\:mt-8{
-    margin-top: 2rem;
-  }
-
-  .lg\:grid-cols-3{
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .lg\:px-8{

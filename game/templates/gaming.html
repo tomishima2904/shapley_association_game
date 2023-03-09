@@ -30,16 +30,16 @@
 
 </script>
 
-<div class="text-4xl text-center font-bold text-black mt-16 font-kosugi lg:mt-8">
+<div class="text-3xl text-center font-bold text-black mt-5 font-kosugi">
   連想に役立った順に選択してください
 </div>
 
-<div class="flex  flex-row justify-end mt-3 mr-3">
-  <button onclick="clearCheckboxes()" class="btn-clear right-2 text-2xl mr-3">選択解除</button>
+<div class="flex  flex-row justify-end mr-3">
+  <button onclick="clearCheckboxes()" class="btn-clear right-2 text-xl mr-3">選択解除</button>
 </div>
 
 <!-- 5つの刺激語をcheckbox形式で羅列している -->
-<div class="grid gap-4 grid-cols-1 lg:grid-cols-3 m-3 place-items-center">
+<div class="grid grid-cols-1 m-1 place-items-center">
   <div class="checkbox-wrapper">
     <input id="stimulus-1" type="checkbox" value="stimulus-1" name="stimulus" class="hidden peer">
     <label id="label-stimulus-1" for="stimulus-1" name="label-stimulus" class="checkbox-label">
@@ -81,12 +81,12 @@
   </div>
 </div>
 
-<div class="mb-5 text-4xl font-kosugi font-bold text-black text-center mt-5" id="q-sentence">
+<div class="mb-5 text-3xl font-kosugi font-bold text-black text-center mt-5" id="q-sentence">
   {{ q_sentence }}
 </div>
 
 
-<form id="answer-form" name="answer-form" class="w-full flex flex-row justify-center ml-20 mt-16 mb-6" method="POST">
+<form id="answer-form" name="answer-form" class="w-full flex flex-row justify-center ml-20 mt-8 mb-6" method="POST">
   {% csrf_token %}
   <!-- {{ form.answer }} Django独自のform -->
   <input id="user-answer" type="text" name="user-answer" required="required" placeholder="解答を入力"
