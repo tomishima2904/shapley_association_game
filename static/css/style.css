@@ -26,18 +26,18 @@ Custimize styles using @apply
 }
 
 .checkbox-label {
-  @apply inline-flex items-center justify-between w-full max-w-sm p-5 border-2 rounded-full cursor-pointer shadow-xl;
+  @apply inline-flex items-center justify-between w-full max-w-sm p-3 border-2 rounded-full cursor-pointer shadow-xl;
   @apply bg-white border-gray-200;
   @apply peer-checked:border-sky-600 peer-checked:text-gray-600;
   @apply hover:text-gray-600 hover:bg-gray-50;
 }
 
 .checkbox-label-content {
-  @apply w-full text-3xl font-kosugi font-bold text-gray-500;
+  @apply w-full text-lg font-kosugi font-bold text-gray-500;
 }
 
 .checkbox-icon-checked {
-  @apply text-white text-xl font-bold bg-sky-400 rounded-full px-3.5 py-1;
+  @apply text-white text-base font-bold bg-sky-400 rounded-full px-[10px] py-[2px];
 }
 
 .checkbox-icon {
