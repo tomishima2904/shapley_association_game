@@ -40,12 +40,11 @@ class IndexView(generic.TemplateView):
 class GamingView(generic.TemplateView):
 
     template_name = "gaming.html"
+    global STIMULI_ORDER
 
 
     # gaming.htmlに遷移されたら行われるGETメソッド
     def get(self, request, *args, **kwargs):
-
-        global STIMULI_ORDER
 
         # ログインしていない場合タイトル画面へリダイレクト
         if (not request.user.is_authenticated) or (not 'status' in request.session):
@@ -91,13 +90,15 @@ class GamingView(generic.TemplateView):
                 if ORDER_TYPE != "fixed":
                     STIMULI_ORDER = list(latest_row.q_order)
 
-            stimuli_header = [f"stimulus_{i}" for i in STIMULI_ORDER]  # DB中から刺激語を探す時に使う用のヘッダー
-
         # ゲーム中に誤ってリロード等して再度GamingViewが実行された場合
         else:
-            qid = UserAnswers.objects.filter(user=request.user).last().qid
+            latest_row = UserAnswers.objects.filter(user=request.user).latest('id')
+            qid = latest_row.qid
             left_questions = QUESTIONS_NUM - qid + 1
+            if ORDER_TYPE != "fixed":
+                STIMULI_ORDER = list(latest_row.q_order)
 
+        stimuli_header = [f"stimulus_{i}" for i in STIMULI_ORDER]  # DB中から刺激語を探す時に使う用のヘッダー
         context['left_questions'] = left_questions  # ユーザーが答えなければいけない質問の残数
         context['stimuli']: List = [
             list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in stimuli_header
@@ -113,7 +114,6 @@ class GamingView(generic.TemplateView):
 
         context = {}
         results = UserAnswers.objects.filter(user=request.user).last()  # テーブルの最後のクエリを抽出
-        global STIMULI_ORDER
 
         results.time_ms = request.POST.get('time')  # 解答にかかった時間
 
