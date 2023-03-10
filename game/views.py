@@ -19,7 +19,6 @@ STIMULI_NUM = 5  # 刺激語の数
 QUESTIONS_NUM = int(env('QUESTIONS_NUM'))  # 総質問数
 ORDER_TYPE = env('ORDER_TYPE')  # 刺激語の提示順のタイプ ('fully_random', 'personally_fixed', 'fixed')
 print(f"order type: {ORDER_TYPE}, number of questions: {QUESTIONS_NUM}")
-STIMULI_ORDER = [str(order+1) for order in range(STIMULI_NUM)]  # DBに保存する用の刺激語の提示順を表した文字列
 
 # 質問のカテゴリに応じた質問文の辞書
 with open ("data/input_sentences.json", encoding='utf-8') as f:
@@ -34,13 +33,14 @@ class IndexView(generic.TemplateView):
         if not 'status' in request.session:
             request.session['status'] = 1  # 通常状態として status に 2^0(1) を加算
 
+        request.session['stimuli_order'] = [str(order+1) for order in range(STIMULI_NUM)]  # DBに保存する用の刺激語の提示順を表した文字列
+
         return super().get(request, **kwargs)
 
 
 class GamingView(generic.TemplateView):
 
     template_name = "gaming.html"
-    global STIMULI_ORDER
 
 
     # gaming.htmlに遷移されたら行われるGETメソッド
@@ -71,14 +71,14 @@ class GamingView(generic.TemplateView):
                 qid = QUESTIONS_NUM - left_questions + 1  # ユーザーが答える質問のID
 
                 if ORDER_TYPE == "fully_random":
-                    random.shuffle(STIMULI_ORDER)  # 刺激語提示順をシャッフル
+                    random.shuffle(request.session['stimuli_order'])  # 刺激語提示順をシャッフル
 
                 # データベースに最初の質問IDを登録
                 UserAnswers.objects.create(
                     user=request.user,
                     session_id=request.session['session_id'],
                     qid=qid,
-                    q_order = ''.join(STIMULI_ORDER)  # ユーザーに提示する刺激語の順序
+                    q_order = ''.join(request.session['stimuli_order'])  # ユーザーに提示する刺激語の順序
                 )
 
             # 前回のセッションでユーザーが途中の質問までしか解答してない場合、途中の質問から答える
@@ -88,7 +88,7 @@ class GamingView(generic.TemplateView):
                 qid = latest_row.qid
                 left_questions = QUESTIONS_NUM - qid + 1
                 if ORDER_TYPE != "fixed":
-                    STIMULI_ORDER = list(latest_row.q_order)
+                    request.session['stimuli_order'] = list(latest_row.q_order)
 
         # ゲーム中に誤ってリロード等して再度GamingViewが実行された場合
         else:
@@ -96,9 +96,9 @@ class GamingView(generic.TemplateView):
             qid = latest_row.qid
             left_questions = QUESTIONS_NUM - qid + 1
             if ORDER_TYPE != "fixed":
-                STIMULI_ORDER = list(latest_row.q_order)
+                request.session['stimuli_order'] = list(latest_row.q_order)
 
-        stimuli_header = [f"stimulus_{i}" for i in STIMULI_ORDER]  # DB中から刺激語を探す時に使う用のヘッダー
+        stimuli_header = [f"stimulus_{i}" for i in request.session['stimuli_order']]  # DB中から刺激語を探す時に使う用のヘッダー
         context['left_questions'] = left_questions  # ユーザーが答えなければいけない質問の残数
         context['stimuli']: List = [
             list(Words.objects.filter(qid=qid).values_list(header, flat=True))[0] for header in stimuli_header
@@ -145,16 +145,16 @@ class GamingView(generic.TemplateView):
             qid = QUESTIONS_NUM - left_questions + 1  # ユーザーが答える質問のID
 
             if ORDER_TYPE == "fully_random":
-                random.shuffle(STIMULI_ORDER)  # 刺激語提示順をシャッフル
+                random.shuffle(request.session['stimuli_order'])  # 刺激語提示順をシャッフル
 
-            stimuli_header = [f"stimulus_{i}" for i in STIMULI_ORDER]  # DB中から刺激語を探す時に使う用のヘッダー
+            stimuli_header = [f"stimulus_{i}" for i in request.session['stimuli_order']]  # DB中から刺激語を探す時に使う用のヘッダー
 
             # 次の質問を作る
             UserAnswers.objects.create(
                 user=request.user,
                 session_id=request.session['session_id'],
                 qid=qid,
-                q_order = ''.join(STIMULI_ORDER)  # ユーザーに提示する刺激語の順序
+                q_order = ''.join(request.session['stimuli_order'])  # ユーザーに提示する刺激語の順序
             )
 
             # context['stimuli']: Dict = {
