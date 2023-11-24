@@ -90,7 +90,7 @@ DATABASES = {
         'NAME': env('MYSQL_DATABASE'),  # データベース名
         'USER': env('MYSQL_USER'),
         'PASSWORD': env('MYSQL_PASSWORD'),
-        'HOST': env('MYSQL_HOST'),
+        'HOST': "db",
         'PORT': '3306',
         'OPTIONS': {
             'charset': 'utf8mb4',
