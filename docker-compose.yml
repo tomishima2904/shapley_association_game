@@ -12,7 +12,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     volumes:
       - ./my.cnf:/etc/my.cnf
-      - ./data/words_data.sql:/tmp/words_data.sql
+      - ./data/words_data.sql:/docker-entrypoint-initdb.d/words_data.sql
 
   web:
     build: .
