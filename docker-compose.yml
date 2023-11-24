@@ -2,16 +2,14 @@ version: "3"
 
 services:
   db:
-    image: mysql
-    restart: always
-    hostname: mysql
+    image: mysql:8
+    env_file: ./.env
     environment:
+      MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-    # データベースの文字コードを utf8mb4 に変更
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     volumes:
       - ./my.cnf:/etc/my.cnf
       - ./data/words_data.sql:/tmp/words_data.sql
